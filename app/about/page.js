@@ -1,15 +1,32 @@
 'use client'
+import { BiArrowFromBottom } from 'react-icons/bi'
+import {
+  Button,
+  ButtonGroup,
+  Center,
+  Heading,
+  IconButton,
+} from '@chakra-ui/react'
+import styled from '@emotion/styled'
 
-import Link from 'next/link'
 import React from 'react'
 
 const About = () => {
   return (
-    <div>
-      <h1>About page</h1>
-      <Link href='/'>Home</Link>
-    </div>
+    <Wrapper>
+      <Center>
+        <Heading as={'h1'}>Hello world</Heading>
+      </Center>
+      <ButtonGroup isAttached variant='outline'>
+        <Button colorScheme='green'>Click me</Button>
+        <IconButton
+          icon={<BiArrowFromBottom size={30} color='green' />}
+        ></IconButton>
+      </ButtonGroup>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.div``
 
 export default About

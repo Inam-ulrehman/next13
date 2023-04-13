@@ -6,16 +6,16 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { extendTheme } from '@chakra-ui/react'
 import { createStandaloneToast } from '@chakra-ui/toast'
 
-const { ToastContainer, toast } = createStandaloneToast()
-const colors = {
-  brand: {
-    900: '#1a365d',
-    800: '#153e75',
-    700: '#2a69ac',
+const { ToastContainer } = createStandaloneToast()
+const theme = extendTheme({
+  colors: {
+    primary: {
+      100: '#f7fafc',
+      // ...
+      900: '#1a202c',
+    },
   },
-}
-
-const theme = extendTheme({ colors })
+})
 
 export function Providers({ children }) {
   return (
