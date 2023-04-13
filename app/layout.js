@@ -1,4 +1,3 @@
-import RootStyleRegistry from './RootStyleRegistry'
 import './globals.css'
 import { Providers } from './providers'
 
@@ -12,9 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body>
-        <RootStyleRegistry>
-          <Providers>{children}</Providers>
-        </RootStyleRegistry>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
