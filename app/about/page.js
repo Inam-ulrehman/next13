@@ -6,12 +6,13 @@ import {
   Center,
   Heading,
   IconButton,
+  useColorMode,
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
-
 import React from 'react'
 
 const About = () => {
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Wrapper>
       <Center>
@@ -23,6 +24,11 @@ const About = () => {
           icon={<BiArrowFromBottom size={30} color='green' />}
         ></IconButton>
       </ButtonGroup>
+      <a href=''>HOW ARE YOU</a>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor,
+        praesentium.
+      </p>
     </Wrapper>
   )
 }
