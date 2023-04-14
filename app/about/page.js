@@ -29,6 +29,9 @@ const About = () => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor,
         praesentium.
       </p>
+      <Button onClick={toggleColorMode}>
+        Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+      </Button>
     </Wrapper>
   )
 }
