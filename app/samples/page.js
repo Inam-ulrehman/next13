@@ -13,7 +13,9 @@ const getSamples = async () => {
 }
 const Samples = async () => {
   const data = await getSamples()
-
+  if (!data) {
+    return
+  }
   return (
     <div>
       <div>
