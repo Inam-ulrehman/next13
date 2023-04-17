@@ -1,6 +1,7 @@
 'use client'
-import { Link } from '@chakra-ui/next-js'
+// import { Link } from '@chakra-ui/next-js'
 import { List, ListItem } from '@chakra-ui/react'
+import Link from 'next/link'
 import React from 'react'
 // const { colorMode, toggleColorMode } = useColorMode()
 {
