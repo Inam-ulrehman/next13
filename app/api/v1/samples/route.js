@@ -5,6 +5,7 @@ export async function GET(request) {
   const pathName = request.nextUrl.pathname
   const searchParams = request.nextUrl.searchParams
   const cookies = request.cookies.getAll()
+  const body = await request.json()
 
   await dbConnect()
   try {
