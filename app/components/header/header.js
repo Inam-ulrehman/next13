@@ -19,5 +19,8 @@ const Header = () => {
   )
 }
 
-const Wrapper = styled.header``
+const Wrapper = styled.header`
+  position: sticky;
+  top: 0;
+`
 export default Header

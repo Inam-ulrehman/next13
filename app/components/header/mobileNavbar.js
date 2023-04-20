@@ -26,13 +26,18 @@ const MobileNavbar = () => {
   const btnRef = React.useRef()
   return (
     <Wrapper>
-      <Box as='div' display={'flex'} justifyContent={'space-between'}>
+      <div className='test'></div>
+      <Box
+        as='div'
+        className='menu'
+        display={'flex'}
+        justifyContent={'space-between'}
+      >
         <MobileLogo />
         <IconButton
           leftIcon={<MdMenuOpen size={35} />}
           ref={btnRef}
           onClick={onOpen}
-          className='menu-button'
         ></IconButton>
       </Box>
       <Drawer
@@ -75,12 +80,6 @@ const MobileNavbar = () => {
 }
 
 const Wrapper = styled.nav`
-  /* position: relative;
-  .menu-button {
-    position: fixed;
-    top: 0;
-    right: 0;
-  } */
   @media (min-width: 768px) {
     display: none;
   }
