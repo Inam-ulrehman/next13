@@ -69,8 +69,13 @@ const MobileNavbar = () => {
                 </ListItem>
               </List>
             </DrawerBody>
-            <DrawerFooter>
-              <Button onClick={onClose}>Close</Button>
+            <DrawerFooter display={'flex'} justifyContent={'space-around'}>
+              <Link href={'/register'}>
+                <Button onClick={onClose}>Register</Button>
+              </Link>
+              <Link href={'/login'}>
+                <Button onClick={onClose}>Login</Button>
+              </Link>
             </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
