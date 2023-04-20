@@ -18,8 +18,9 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from '@chakra-ui/react'
-import styled from 'styled-components'
+
 import MobileLogo from './mobileLogo'
+import styled from '@emotion/styled'
 const MobileNavbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
