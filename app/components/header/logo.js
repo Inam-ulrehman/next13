@@ -1,8 +1,7 @@
 'use client'
-import { Text, useColorMode } from '@chakra-ui/react'
+
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
-import Image from 'next/image'
 import React from 'react'
 
 const DarkLogo = () => {
@@ -14,6 +13,8 @@ const DarkLogo = () => {
         height={500}
         alt='Logo'
         priority
+        loading='eager'
+        title='Logo'
       />
       <p>
         Car<span>Sell</span>
@@ -30,7 +31,9 @@ const LightLogo = () => {
         width={500}
         height={500}
         alt='Logo'
+        title='Logo'
         priority
+        loading='eager'
       />
       <p className='light-p'>
         Car<span>Sell</span>
@@ -52,11 +55,10 @@ const Wrapper = styled.div`
     margin-left: 0.7rem;
     font-size: 2.4rem;
     font-weight: 500;
+    border-bottom: 4px solid var(--chakra-colors-red-400);
   }
   .light-p {
     color: var(--chakra-colors-red-400);
-
-    border-bottom: 4px solid var(--chakra-colors-red-400);
   }
 `
 

@@ -20,6 +20,7 @@ import {
 } from '@chakra-ui/react'
 
 import styled from '@emotion/styled'
+import { LightLogo } from './logo'
 const MobileNavbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
@@ -32,6 +33,9 @@ const MobileNavbar = () => {
         display={'flex'}
         justifyContent={'space-between'}
       >
+        <div className='logo'>
+          <LightLogo />
+        </div>
         <IconButton
           leftIcon={<MdMenuOpen size={35} />}
           ref={btnRef}
@@ -83,6 +87,9 @@ const MobileNavbar = () => {
 }
 
 const Wrapper = styled.nav`
+  .logo {
+    padding: 5px;
+  }
   @media (min-width: 768px) {
     display: none;
   }
