@@ -39,12 +39,19 @@ const InputHolder = () => {
     <Wrapper onSubmit={handleSubmit}>
       <FormControl borderRadius={'lg'}>
         <FormLabel>Name</FormLabel>
-        <Input type='text' value={name} name='name' onChange={handleChange} />
+        <Input
+          type='text'
+          value={name}
+          id='name'
+          name='name'
+          onChange={handleChange}
+        />
 
         <FormLabel>Email address</FormLabel>
         <Input
           type='email'
           value={email}
+          id='email'
           name='email'
           onChange={handleChange}
         />
@@ -53,11 +60,12 @@ const InputHolder = () => {
           <Input
             type={show ? 'text' : 'password'}
             value={password}
+            id='password'
             name='password'
             onChange={handleChange}
           />
-          <InputRightElement>
-            <Button h='2.5rem' size='md' onClick={handleShow}>
+          <InputRightElement width='4.5rem'>
+            <Button h='1.75rem' size='md' mr={2} onClick={handleShow}>
               {show ? 'Hide' : 'Show'}
             </Button>
           </InputRightElement>
