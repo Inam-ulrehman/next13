@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { VscColorMode } from 'react-icons/vsc'
 import styled from '@emotion/styled'
-import DesktopLogo from './desktopLogo'
+import { DarkLogo, LightLogo } from './logo'
 
 const DesktopNavbar = () => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -21,8 +21,9 @@ const DesktopNavbar = () => {
         backgroundColor: `${colorMode === 'light' ? 'white' : 'black'}`,
       }}
     >
-      <DesktopLogo />
-      <List display={'flex'} gap={5}>
+      {colorMode === 'light' ? <LightLogo /> : <DarkLogo />}
+
+      <List display={'flex'} alignItems={'center'} gap={5}>
         <ListItem>
           <Link href={'/'}>Home</Link>
         </ListItem>

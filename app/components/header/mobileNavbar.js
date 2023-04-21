@@ -19,7 +19,6 @@ import {
   DrawerCloseButton,
 } from '@chakra-ui/react'
 
-import MobileLogo from './mobileLogo'
 import styled from '@emotion/styled'
 const MobileNavbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -33,7 +32,6 @@ const MobileNavbar = () => {
         display={'flex'}
         justifyContent={'space-between'}
       >
-        <MobileLogo />
         <IconButton
           leftIcon={<MdMenuOpen size={35} />}
           ref={btnRef}
