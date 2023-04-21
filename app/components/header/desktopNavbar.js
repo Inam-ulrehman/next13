@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from '@chakra-ui/next-js'
+
 import {
   Box,
   Button,
@@ -12,8 +12,12 @@ import {
 import { VscColorMode } from 'react-icons/vsc'
 import styled from '@emotion/styled'
 import { DarkLogo, LightLogo } from './logo'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const DesktopNavbar = () => {
+  const path = usePathname()
+
   const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Wrapper
@@ -23,23 +27,32 @@ const DesktopNavbar = () => {
     >
       {colorMode === 'light' ? <LightLogo /> : <DarkLogo />}
 
-      <List display={'flex'} alignItems={'center'} gap={5}>
+      <List className='links' display={'flex'} alignItems={'center'} gap={3}>
         <ListItem>
-          <Link href={'/'}>Home</Link>
+          <Link className={path === '/' ? 'active' : ''} href={'/'}>
+            Home
+          </Link>
         </ListItem>
         <ListItem>
-          <Link href={'/about'}>About</Link>
+          <Link className={path === '/about' ? 'active' : ''} href={'/about'}>
+            About
+          </Link>
         </ListItem>
         <ListItem>
-          <Link href={'/samples'}>Samples</Link>
+          <Link
+            className={path === '/samples' ? 'active' : ''}
+            href={'/samples'}
+          >
+            Samples
+          </Link>
         </ListItem>
       </List>
       <HStack>
         <Button onClick={toggleColorMode} leftIcon={<VscColorMode />}>
           {colorMode === 'light' ? 'Dark' : 'Light'} Theme
         </Button>
-        <Box>
-          <Link mr={2} href={'login'}>
+        <Box className='login-register'>
+          <Link href={'login'}>
             <Button>Login</Button>
           </Link>
           <Link href={'/register'}>
@@ -53,9 +66,39 @@ const DesktopNavbar = () => {
 const Wrapper = styled.nav`
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0.3rem 1rem;
+
   border-bottom: 1px solid var(--chakra-colors-gray-200);
-  /* background-color: var(--chakra-colors-white); */
+  .links {
+    li {
+      height: 100%;
+      display: flex;
+    }
+    a {
+      margin-top: 0.3rem;
+      padding: 0 1rem;
+      display: grid;
+      place-content: center;
+      font-size: 1.2rem;
+      font-weight: 500;
+      height: 100%;
+
+      :hover {
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid var(--chakra-colors-red-300);
+      }
+    }
+  }
+  .active {
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid var(--chakra-colors-red-300);
+  }
+  .login-register {
+    Button {
+      margin-right: 5px;
+    }
+  }
+
   @media (max-width: 768px) {
     display: none;
   }
