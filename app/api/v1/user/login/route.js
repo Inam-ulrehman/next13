@@ -39,6 +39,7 @@ export async function POST(request, res) {
     JSON.stringify({
       success: true,
       msg: `Welcome back ${titleCase(user.name)}`,
+      token,
     }),
     {
       status: StatusCodes.success,

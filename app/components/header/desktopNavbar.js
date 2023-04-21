@@ -99,7 +99,7 @@ const Wrapper = styled.nav`
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 760px) {
     display: none;
   }
 `
