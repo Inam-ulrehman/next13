@@ -37,7 +37,7 @@ const MobileNavbar = () => {
           <LightLogo />
         </div>
         <IconButton
-          leftIcon={<MdMenuOpen size={75} />}
+          leftIcon={<MdMenuOpen size={55} />}
           mt={2}
           ref={btnRef}
           onClick={onOpen}
@@ -52,7 +52,7 @@ const MobileNavbar = () => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton size={'lg'} />
-            <DrawerHeader>Nav bar header</DrawerHeader>
+            <DrawerHeader>Best Car Seller</DrawerHeader>
             <DrawerBody>
               <List display={'grid'} gap={5}>
                 <ListItem>
