@@ -134,9 +134,6 @@ const Wrapper = styled.form`
     margin: 0.5rem 0;
     text-align: center;
     border-bottom: 2px solid var(--chakra-colors-gray-100);
-    span {
-      background-color: white;
-    }
   }
   @media (max-width: 768px) {
     .chakra-form-control {
