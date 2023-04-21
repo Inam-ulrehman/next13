@@ -1,14 +1,19 @@
 'use client'
 
+import { customFetch } from '@/lib/axios/customFetch'
+import { Link } from '@chakra-ui/next-js'
 import {
   Button,
+  Divider,
   FormControl,
   FormLabel,
   Input,
   InputGroup,
   InputRightElement,
+  useToast,
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
+import Cookies from 'js-cookie'
 import { useState } from 'react'
 const initialState = {
   name: '',
@@ -19,13 +24,30 @@ const initialState = {
 }
 
 const InputHolder = () => {
+  const toast = useToast()
   const [state, setState] = useState(initialState)
   const { isLoading, email, name, password, show } = state
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    setState({ ...state, isLoading: true })
+    try {
+      setState({ ...state, isLoading: true })
+      const response = await customFetch.post('/user/register', state)
+      const { token } = response.data
+      Cookies.set('Authorization_Token', token, { expires: 7 })
+      setState(initialState)
+    } catch (error) {
+      const { msg } = error.response.data
+      toast({
+        description: msg,
+        status: 'error',
+        isClosable: true,
+        duration: 3000,
+        position: 'top-right',
+      })
+      setState({ ...state, isLoading: false })
+    }
   }
 
   const handleShow = () => setState({ ...state, show: !state.show })
@@ -37,7 +59,7 @@ const InputHolder = () => {
   }
   return (
     <Wrapper onSubmit={handleSubmit}>
-      <FormControl borderRadius={'lg'}>
+      <FormControl isRequired borderRadius={'lg'}>
         <FormLabel>Name</FormLabel>
         <Input
           type='text'
@@ -79,6 +101,15 @@ const InputHolder = () => {
         >
           Submit
         </Button>
+        <div className='divider'>
+          <span>or</span>
+        </div>
+
+        <Button w={'100%'}>
+          <Link w={'100%'} href={'/login'}>
+            Login
+          </Link>
+        </Button>
       </FormControl>
     </Wrapper>
   )
@@ -98,7 +129,15 @@ const Wrapper = styled.form`
     margin-top: 1rem;
     width: 100%;
   }
-
+  .divider {
+    width: 100%;
+    margin: 0.5rem 0;
+    text-align: center;
+    border-bottom: 2px solid var(--chakra-colors-gray-100);
+    span {
+      background-color: white;
+    }
+  }
   @media (max-width: 768px) {
     .chakra-form-control {
       width: 90vw;

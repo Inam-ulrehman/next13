@@ -8,6 +8,7 @@ export async function POST(request, res) {
   const searchParams = request.nextUrl.searchParams
   const cookies = request.cookies.getAll()
   const body = await request.json()
+
   const { name, email, password } = body
   await dbConnect()
   const isFirstAccount = await User.countDocuments({})
