@@ -17,7 +17,7 @@ const DarkLogo = () => {
         title='Logo'
       />
       <p>
-        Car<span>Sell</span>
+        Car<span> Sell</span>
       </p>
     </Wrapper>
   )
@@ -36,7 +36,7 @@ const LightLogo = () => {
         loading='eager'
       />
       <p className='light-p'>
-        Car<span>Sell</span>
+        Car<span> Sell</span>
       </p>
     </Wrapper>
   )
@@ -54,11 +54,15 @@ const Wrapper = styled.div`
   p {
     margin-left: 0.7rem;
     font-size: 2.4rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 500;
-    border-bottom: 4px solid var(--chakra-colors-red-400);
+    border-bottom: 4px solid var(--chakra-colors-red-300);
   }
   .light-p {
-    color: var(--chakra-colors-red-400);
+    color: var(--chakra-colors-gray-600);
+    span {
+      color: var(--chakra-colors-red-300);
+    }
   }
 `
 

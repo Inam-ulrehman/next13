@@ -37,7 +37,8 @@ const MobileNavbar = () => {
           <LightLogo />
         </div>
         <IconButton
-          leftIcon={<MdMenuOpen size={35} />}
+          leftIcon={<MdMenuOpen size={75} />}
+          mt={2}
           ref={btnRef}
           onClick={onOpen}
         ></IconButton>
