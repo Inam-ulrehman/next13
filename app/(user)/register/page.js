@@ -1,7 +1,12 @@
 import React from 'react'
+import InputHolder from './inputHolder'
 
 const Register = () => {
-  return <div>Register</div>
+  return (
+    <div>
+      <InputHolder />
+    </div>
+  )
 }
 
 export default Register

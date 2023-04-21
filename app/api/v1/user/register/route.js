@@ -27,7 +27,7 @@ export async function POST(request, res) {
     })
     const token = await user.createJWT()
     return new Response(
-      JSON.stringify({ success: true, msg: 'user register' }),
+      JSON.stringify({ success: true, msg: 'user register', token }),
       {
         status: StatusCodes.success,
       }
