@@ -3,6 +3,7 @@ import { customFetch } from '@/lib/axios/customFetch'
 import { Link } from '@chakra-ui/next-js'
 import {
   Button,
+  Center,
   FormControl,
   FormLabel,
   Input,
@@ -85,6 +86,11 @@ const Login = () => {
         >
           Submit
         </Button>
+        <Center>
+          <Link color={'var(--chakra-colors-blue-500)'} href={'/recover'}>
+            Forgot password
+          </Link>
+        </Center>
         <div className='divider'>
           <span>or</span>
         </div>
