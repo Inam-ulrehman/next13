@@ -56,7 +56,7 @@ const Wrapper = styled.div`
     font-size: 2.4rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 500;
-    border-bottom: 4px solid var(--chakra-colors-red-300);
+    border-bottom: 2px solid var(--chakra-colors-red-300);
   }
   .light-p {
     color: var(--chakra-colors-gray-600);

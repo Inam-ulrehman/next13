@@ -79,19 +79,18 @@ const Wrapper = styled.nav`
       padding: 0 1rem;
       display: grid;
       place-content: center;
-      font-size: 1.2rem;
-      font-weight: 500;
+
       height: 100%;
 
       :hover {
-        border-top: 5px solid transparent;
-        border-bottom: 5px solid var(--chakra-colors-red-300);
+        border-top: 2px solid transparent;
+        border-bottom: 2px solid var(--chakra-colors-red-300);
       }
     }
   }
   .active {
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid var(--chakra-colors-red-300);
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid var(--chakra-colors-red-300);
   }
   .login-register {
     Button {
