@@ -144,7 +144,7 @@ UserSchema.methods.recoverJWT = async function () {
     .setIssuedAt()
     .setIssuer(this.role)
     .setAudience(`urn:example:audience`)
-    .setExpirationTime('7d')
+    .setExpirationTime('1h')
     .sign(new TextEncoder().encode(process.env.JWT_SECRET))
 }
 
