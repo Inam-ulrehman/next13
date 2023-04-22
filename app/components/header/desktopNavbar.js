@@ -1,20 +1,10 @@
-import React from 'react'
-
-import {
-  Box,
-  Button,
-  Divider,
-  HStack,
-  List,
-  ListItem,
-  useColorMode,
-} from '@chakra-ui/react'
-import { VscColorMode } from 'react-icons/vsc'
+import { HStack, List, ListItem, useColorMode } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { DarkLogo, LightLogo } from './logo'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import IsMember from './isMember'
+import ToggleTheme from './toggleTheme'
 
 const DesktopNavbar = () => {
   const path = usePathname()
@@ -49,9 +39,7 @@ const DesktopNavbar = () => {
         </ListItem>
       </List>
       <HStack>
-        <Button onClick={toggleColorMode} leftIcon={<VscColorMode />}>
-          {colorMode === 'light' ? 'Dark' : 'Light'} Theme
-        </Button>
+        <ToggleTheme />
         <IsMember />
       </HStack>
     </Wrapper>
