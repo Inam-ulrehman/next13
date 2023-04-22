@@ -21,6 +21,7 @@ import {
 
 import styled from '@emotion/styled'
 import { LightLogo } from './logo'
+import IsMember from './isMember'
 const MobileNavbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
@@ -72,13 +73,12 @@ const MobileNavbar = () => {
                 </ListItem>
               </List>
             </DrawerBody>
-            <DrawerFooter display={'flex'} justifyContent={'space-around'}>
-              <Link href={'/register'}>
-                <Button onClick={onClose}>Register</Button>
-              </Link>
-              <Link href={'/login'}>
-                <Button onClick={onClose}>Login</Button>
-              </Link>
+            <DrawerFooter
+              onClick={onClose}
+              display={'grid'}
+              placeContent={'center'}
+            >
+              <IsMember />
             </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
