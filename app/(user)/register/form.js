@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 const initialState = {
   name: '',
@@ -24,6 +25,7 @@ const initialState = {
 }
 
 const Form = () => {
+  const router = useRouter()
   const toast = useToast()
   const [state, setState] = useState(initialState)
   const { isLoading, email, name, password, show } = state
@@ -34,9 +36,17 @@ const Form = () => {
     try {
       setState({ ...state, isLoading: true })
       const response = await customFetch.post('/user/register', state)
+      router.refresh()
       const { token } = response.data
       Cookies.set('Authorization_Token', token, { expires: 7 })
       setState(initialState)
+      toast({
+        description: response.data.msg,
+        status: 'success',
+        isClosable: true,
+        duration: 3000,
+        position: 'top-right',
+      })
     } catch (error) {
       const { msg } = error.response.data
       toast({

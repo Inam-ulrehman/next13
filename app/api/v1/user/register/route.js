@@ -1,5 +1,6 @@
 import dbConnect from '@/lib/dbConnect'
 import mongooseErrorHandler from '@/lib/errors/mongoose-error-handler'
+import { titleCase } from '@/lib/helper'
 import User from '@/models/User'
 import { StatusCodes } from 'http-status-codes'
 
@@ -28,7 +29,11 @@ export async function POST(request, res) {
     })
     const token = await user.createJWT()
     return new Response(
-      JSON.stringify({ success: true, msg: 'user register', token }),
+      JSON.stringify({
+        success: true,
+        msg: `Welcome ${titleCase(name)}`,
+        token,
+      }),
       {
         status: StatusCodes.success,
       }

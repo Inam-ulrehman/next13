@@ -36,8 +36,12 @@ export function middleware(request, response, event) {
     // direct response back if fail for actions.
     return authDashboard(request)
   }
-  // ==========Authentication Front End==========
+  // ==========User Redirect ==========
   if (request.nextUrl.pathname.startsWith('/login')) {
+    // direct response back if fail for actions.
+    return isLoggedIn(request)
+  }
+  if (request.nextUrl.pathname.startsWith('/register')) {
     // direct response back if fail for actions.
     return isLoggedIn(request)
   }
@@ -46,5 +50,5 @@ export function middleware(request, response, event) {
 // this logic is default
 export const config = {
   // any routes to v1 match
-  matcher: ['/api/v1/:path*', '/dashboard/:path*', '/login/:path*'],
+  matcher: ['/api/v1/:path*', '/dashboard/:path*', '/login', '/register'],
 }
