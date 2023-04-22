@@ -5,6 +5,7 @@ import {
   authAdminDashboard,
   authApi,
   authDashboard,
+  isLoggedIn,
 } from './lib/authentications'
 
 export function middleware(request, response, event) {
@@ -17,33 +18,33 @@ export function middleware(request, response, event) {
   //   })
   // )
 
-  // if (request.nextUrl.pathname.startsWith('/api/v1')) {
-  //   console.log('hello')
-  //   NextResponse.next()
-  // }
   // ==========Authentication Back End==========
 
   if (request.nextUrl.pathname.startsWith('/api/v1/auth/')) {
     return authApi(request)
   }
-  // ==========Authentication Back End Admin==========
 
   if (request.nextUrl.pathname.startsWith('/api/v1/authadmin/')) {
     return authAdminApi(request)
   }
   // ==========Authentication Front End==========
-  if (request.nextUrl.pathname.startsWith('/dashboard')) {
+  if (request.nextUrl.pathname.startsWith('/dashboard/admin')) {
     // direct response back if fail for actions.
     return authAdminDashboard(request)
   }
-  if (request.nextUrl.pathname.startsWith('/user/dashboard')) {
+  if (request.nextUrl.pathname.startsWith('/dashboard/user')) {
     // direct response back if fail for actions.
     return authDashboard(request)
+  }
+  // ==========Authentication Front End==========
+  if (request.nextUrl.pathname.startsWith('/login')) {
+    // direct response back if fail for actions.
+    return isLoggedIn(request)
   }
 }
 
 // this logic is default
 export const config = {
   // any routes to v1 match
-  matcher: ['/api/v1/:path*', '/dashboard/:path*', '/user/dashboard/:path*'],
+  matcher: ['/api/v1/:path*', '/dashboard/:path*', '/login/:path*'],
 }
