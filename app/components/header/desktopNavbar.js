@@ -14,6 +14,7 @@ import styled from '@emotion/styled'
 import { DarkLogo, LightLogo } from './logo'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import IsMember from './isMember'
 
 const DesktopNavbar = () => {
   const path = usePathname()
@@ -51,14 +52,7 @@ const DesktopNavbar = () => {
         <Button onClick={toggleColorMode} leftIcon={<VscColorMode />}>
           {colorMode === 'light' ? 'Dark' : 'Light'} Theme
         </Button>
-        <Box className='login-register'>
-          <Link href={'login'}>
-            <Button>Login</Button>
-          </Link>
-          <Link href={'/register'}>
-            <Button>Register</Button>
-          </Link>
-        </Box>
+        <IsMember />
       </HStack>
     </Wrapper>
   )
@@ -91,11 +85,6 @@ const Wrapper = styled.nav`
   .active {
     border-top: 2px solid transparent;
     border-bottom: 2px solid var(--chakra-colors-red-300);
-  }
-  .login-register {
-    Button {
-      margin-right: 5px;
-    }
   }
 
   @media (max-width: 760px) {
