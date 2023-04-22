@@ -1,23 +1,73 @@
 'use client'
+import { customFetch } from '@/lib/axios/customFetch'
 import { Link } from '@chakra-ui/next-js'
 import {
   Box,
   Button,
-  Divider,
   FormControl,
   FormLabel,
   Input,
+  useToast,
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
-import React from 'react'
 
+import React, { useState } from 'react'
+
+const initialState = {
+  email: '',
+  isLoading: false,
+}
 const Form = () => {
+  const toast = useToast()
+  const [state, setState] = useState(initialState)
+  const { email, isLoading } = state
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      setState({ ...state, isLoading: true })
+      const response = await customFetch.post('/user/recover', state)
+      setState(initialState)
+      toast({
+        description: response.data.msg,
+        duration: 3000,
+        status: 'success',
+        position: 'top-right',
+        isClosable: true,
+      })
+    } catch (error) {
+      setState({ ...state, isLoading: false })
+      toast({
+        description: error.response.data.msg,
+        status: 'error',
+        isClosable: true,
+        duration: 3000,
+        position: 'top-right',
+      })
+    }
+  }
+
+  const handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    setState({ ...state, [name]: value })
+  }
   return (
-    <Wrapper>
+    <Wrapper onSubmit={handleSubmit}>
       <FormControl isRequired>
         <FormLabel>Email</FormLabel>
-        <Input type='text'></Input>
-        <Button mt='1rem' colorScheme='teal' w={'100%'}>
+        <Input
+          name='email'
+          type='text'
+          value={email}
+          onChange={handleChange}
+        ></Input>
+        <Button
+          isLoading={isLoading}
+          type='submit'
+          mt='1rem'
+          colorScheme='teal'
+          w={'100%'}
+        >
           Submit
         </Button>
         <Box
