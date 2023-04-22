@@ -96,10 +96,8 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: 'user',
     },
-    uuid: {
-      type: String,
-    },
-    forgotPasswordId: {
+
+    recoveryToken: {
       type: String,
     },
     verified: {
@@ -127,14 +125,6 @@ UserSchema.pre('save', async function () {
 })
 
 UserSchema.methods.createJWT = async function () {
-  // return jwt.sign(
-  //   { userId: this._id, name: this.name },
-  //   process.env.JWT_SECRET,
-  //   {
-  //     expiresIn: process.env.JWT_LIFETIME,
-  //   }
-  // )
-
   const alg = 'HS256'
 
   return await new jose.SignJWT({ userId: this._id, name: this.name })
@@ -143,6 +133,18 @@ UserSchema.methods.createJWT = async function () {
     .setIssuer(this.role)
     .setAudience(`urn:example:audience`)
     .setExpirationTime(process.env.JWT_LIFETIME)
+    .sign(new TextEncoder().encode(process.env.JWT_SECRET))
+}
+// password recovery token
+UserSchema.methods.recoverJWT = async function () {
+  const alg = 'HS256'
+
+  return await new jose.SignJWT({ userId: this._id, name: this.name })
+    .setProtectedHeader({ alg })
+    .setIssuedAt()
+    .setIssuer(this.role)
+    .setAudience(`urn:example:audience`)
+    .setExpirationTime('7d')
     .sign(new TextEncoder().encode(process.env.JWT_SECRET))
 }
 
