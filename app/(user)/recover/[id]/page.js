@@ -1,6 +1,7 @@
 import * as jose from 'jose'
-import ChangePassword from './changePassword'
+
 import ShowError from './showError'
+import Form from './form'
 
 const RecoverPassword = async ({ params }) => {
   const token = params.id
@@ -10,9 +11,8 @@ const RecoverPassword = async ({ params }) => {
       token,
       new TextEncoder().encode(process.env.JWT_SECRET)
     )
-    const { exp, userId } = payload
 
-    return <ChangePassword token={token} />
+    return <Form token={token} />
   } catch (error) {
     return <ShowError error={error.code} />
   }
