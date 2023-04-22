@@ -1,10 +1,10 @@
 import React from 'react'
-import InputHolder from './inputHolder'
+import Form from './form'
 
 const Register = () => {
   return (
     <div>
-      <InputHolder />
+      <Form />
     </div>
   )
 }

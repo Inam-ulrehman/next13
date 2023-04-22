@@ -23,7 +23,7 @@ const initialState = {
   isLoading: false,
 }
 
-const InputHolder = () => {
+const Form = () => {
   const toast = useToast()
   const [state, setState] = useState(initialState)
   const { isLoading, email, name, password, show } = state
@@ -106,7 +106,13 @@ const InputHolder = () => {
         </div>
 
         <Button w={'100%'}>
-          <Link w={'100%'} href={'/login'}>
+          <Link
+            display={'grid'}
+            w={'100%'}
+            h={'inherit'}
+            placeContent={'center'}
+            href={'/login'}
+          >
             Login
           </Link>
         </Button>
@@ -141,4 +147,4 @@ const Wrapper = styled.form`
     }
   }
 `
-export default InputHolder
+export default Form

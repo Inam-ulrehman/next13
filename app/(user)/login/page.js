@@ -1,5 +1,6 @@
 'use client'
 import { customFetch } from '@/lib/axios/customFetch'
+import { Link } from '@chakra-ui/next-js'
 import {
   Button,
   FormControl,
@@ -9,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import Cookies from 'js-cookie'
-import Link from 'next/link'
+
 import { useState } from 'react'
 const initialState = {
   email: '',
@@ -89,7 +90,7 @@ const Login = () => {
         </div>
 
         <Button w={'100%'}>
-          <Link w={'100%'} href={'/register'}>
+          <Link className='register' w={'100%'} href={'/register'}>
             Register
           </Link>
         </Button>
@@ -117,7 +118,11 @@ const Wrapper = styled.form`
     text-align: center;
     border-bottom: 2px solid var(--chakra-colors-gray-100);
   }
-
+  .register {
+    display: grid;
+    height: inherit;
+    place-content: center;
+  }
   @media (max-width: 768px) {
     .chakra-form-control {
       width: 90vw;
