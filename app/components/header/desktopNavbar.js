@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import IsMember from './isMember'
 import ToggleTheme from './toggleTheme'
+import Profile from './profile'
 
 const DesktopNavbar = () => {
   const path = usePathname()
@@ -39,6 +40,7 @@ const DesktopNavbar = () => {
         </ListItem>
       </List>
       <HStack>
+        <Profile />
         <ToggleTheme />
         <IsMember />
       </HStack>

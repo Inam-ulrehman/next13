@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
 
 const initialState = {
-  show: true,
+  show: false,
 }
 const IsMember = () => {
   const [state, setState] = useState(initialState)
@@ -15,6 +15,7 @@ const IsMember = () => {
     if (!token || token === 'undefined') {
       return setState({ ...state, show: true })
     }
+
     setState({ ...state, show: false })
   }, [token])
   return (
