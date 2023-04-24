@@ -7,6 +7,7 @@ import {
   IconButton,
   List,
   ListItem,
+  useColorMode,
   useDisclosure,
 } from '@chakra-ui/react'
 import {
@@ -20,27 +21,29 @@ import {
 } from '@chakra-ui/react'
 
 import styled from '@emotion/styled'
-import { LightLogo } from './logo'
+import { DarkLogo, LightLogo } from './logo'
 import IsMember from './isMember'
 import ToggleTheme from './toggleTheme'
 import MobileProfile from './mobileProfile'
 const MobileNavbar = () => {
+  const { colorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
   return (
     <Wrapper>
-      <div className='test'></div>
       <Box
         as='div'
         className='menu'
         display={'flex'}
         justifyContent={'space-between'}
+        bgColor={colorMode === 'light' ? 'white' : 'black'}
       >
         <div className='logo'>
-          <LightLogo />
+          {colorMode === 'light' ? <LightLogo /> : <DarkLogo />}
         </div>
         <IconButton
-          leftIcon={<MdMenuOpen size={55} />}
+          bgColor={'transparent'}
+          leftIcon={<MdMenuOpen size={45} />}
           mt={2}
           ref={btnRef}
           onClick={onOpen}
@@ -92,8 +95,20 @@ const MobileNavbar = () => {
 }
 
 const Wrapper = styled.nav`
+  border-bottom: 2px solid var(--chakra-colors-gray-300);
+
   .logo {
     padding: 5px;
+    align-items: baseline !important;
+    margin-top: 10px;
+    img {
+      width: 50px;
+      height: 50px;
+      margin-top: 5px;
+    }
+    p {
+      border-bottom: 0px;
+    }
   }
   @media (min-width: 768px) {
     display: none;
