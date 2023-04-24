@@ -23,6 +23,7 @@ import styled from '@emotion/styled'
 import { LightLogo } from './logo'
 import IsMember from './isMember'
 import ToggleTheme from './toggleTheme'
+import MobileProfile from './mobileProfile'
 const MobileNavbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
@@ -80,6 +81,7 @@ const MobileNavbar = () => {
               placeContent={'center'}
             >
               <IsMember />
+              <MobileProfile />
             </DrawerFooter>
             <ToggleTheme />
           </DrawerContent>
