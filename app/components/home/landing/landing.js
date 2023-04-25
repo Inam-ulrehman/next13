@@ -66,6 +66,7 @@ const Wrapper = styled.div`
   }
   /* ipad only */
   @media (min-width: 768px) {
+    margin-bottom: 1rem;
     .title-image {
       display: grid;
       grid-template-columns: 1fr 1fr;
