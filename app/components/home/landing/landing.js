@@ -10,12 +10,18 @@ const Landing = () => {
     <Wrapper>
       <div className='title-image'>
         <div className='title'>
-          <Heading as='h1'>Hello this is title</Heading>
+          <Heading
+            bgGradient='linear(to-l, #7928CA, #FF0080)'
+            bgClip='text'
+            as='h1'
+          >
+            Your One-Stop Shop for Buying and Selling Cars
+          </Heading>
           <Text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
-            sequi corrupti, ipsum reprehenderit placeat voluptatum!
+            CarMax is the ultimate destination for car buyers and sellers alike.
+            Whether you're looking to purchase a new car or sell your old one,
+            we've got you covered.
           </Text>
-          <Button colorScheme='blue'>Contact us</Button>
         </div>
         <div className='image'>
           <CldImage
@@ -33,11 +39,12 @@ const Landing = () => {
 }
 const Wrapper = styled.div`
   .title-image {
+    background-color: var(--chakra-colors-blackAlpha-200);
   }
   .title {
     p {
       padding: 1rem 0;
-      font-weight: 400;
+      font-weight: 500;
     }
   }
   .image {
@@ -62,11 +69,12 @@ const Wrapper = styled.div`
     .title-image {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      align-items: center;
       .title {
         padding: 3rem;
       }
       .image {
-        height: 30vh;
+        height: 40vh;
         width: 100%;
         img {
           width: 100%;
@@ -81,7 +89,6 @@ const Wrapper = styled.div`
   @media (min-width: 1024px) {
     min-height: calc(100vh - 58px);
     .title-image {
-      background-color: var(--chakra-colors-blackAlpha-200);
       align-items: center;
       height: 60vh;
       .title {

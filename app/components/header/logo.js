@@ -17,7 +17,7 @@ const DarkLogo = () => {
         title='Logo'
       />
       <p>
-        Car<span> Sell</span>
+        Car<span>Max</span>
       </p>
     </Wrapper>
   )
@@ -36,7 +36,7 @@ const LightLogo = () => {
         loading='eager'
       />
       <p className='light-p'>
-        Car<span> Sell</span>
+        Car<span>Max</span>
       </p>
     </Wrapper>
   )

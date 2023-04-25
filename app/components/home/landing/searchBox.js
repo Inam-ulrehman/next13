@@ -57,23 +57,21 @@ const SearchBox = () => {
             Most Popular Cars in Canada:
           </Heading>
           <div className='buttons-list'>
-            <ButtonGroup>
-              <Button size={'sm'} leftIcon={<BsSearch />}>
-                Honda Civic
-              </Button>
-              <Button size={'sm'} leftIcon={<BsSearch />}>
-                Ford Mustang
-              </Button>
-              <Button size={'sm'} leftIcon={<BsSearch />}>
-                Ford F-150
-              </Button>
-              <Button size={'sm'} leftIcon={<BsSearch />}>
-                Honda C-RV
-              </Button>
-              <Button size={'sm'} leftIcon={<BsSearch />}>
-                Toyota Rav4
-              </Button>
-            </ButtonGroup>
+            <Button size={'xs'} leftIcon={<BsSearch />}>
+              Honda Civic
+            </Button>
+            <Button size={'xs'} leftIcon={<BsSearch />}>
+              Ford Mustang
+            </Button>
+            <Button size={'xs'} leftIcon={<BsSearch />}>
+              Ford F-150
+            </Button>
+            <Button size={'xs'} leftIcon={<BsSearch />}>
+              Honda C-RV
+            </Button>
+            <Button size={'xs'} leftIcon={<BsSearch />}>
+              Toyota Rav4
+            </Button>
           </div>
         </div>
         <div className='offer-button'>
@@ -81,7 +79,7 @@ const SearchBox = () => {
             Sell your car?
           </Heading>
           <Button leftIcon={<MdElectricBolt />} size={'sm'}>
-            Get your offer now{' '}
+            Get your offer now
           </Button>
         </div>
       </div>
@@ -102,11 +100,12 @@ const Wrapper = styled.div`
   .buttons-list {
     margin-top: 1rem;
   }
-  .chakra-button__group {
+  .buttons-list {
     display: flex;
     flex-wrap: wrap;
     button {
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
+      margin-right: 0.5rem;
     }
   }
   .offer-button {
@@ -134,7 +133,7 @@ const Wrapper = styled.div`
   /* desktop only */
   @media (min-width: 1024px) {
     min-height: calc(100vh - 58px - 60vh + 4rem);
-    max-width: 80vw;
+    max-width: 85vw;
     margin: 0 auto;
     margin-top: -4rem;
     border-radius: 10px;
@@ -149,7 +148,7 @@ const Wrapper = styled.div`
       display: flex;
       justify-content: space-between;
     }
-    .chakra-button__group {
+    .buttons-list {
       button {
         color: var(--chakra-colors-blue-500);
         :hover {
