@@ -35,7 +35,7 @@ const LandingThird = () => {
 }
 
 const Wrapper = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 58px);
 
   .container {
     .image {
@@ -98,6 +98,7 @@ const Wrapper = styled.div`
         text-transform: capitalize;
         font-size: large;
         margin-top: -1rem;
+        font-weight: 500;
       }
     }
   }
