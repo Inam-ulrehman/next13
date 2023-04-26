@@ -49,23 +49,23 @@ const LandingTwo = () => {
           style={{ backgroundColor: `${colorMode === 'dark' ? 'black' : ''}` }}
         >
           <Text fontSize={'2xl'} fontWeight={'bold'}>
-            Sell to dealership
+            Sell privately
           </Text>
           <Text>
             <BiCheck size={25} />
-            Sell as early as today
+            Free to list
           </Text>
           <Text>
             <BiCheck size={25} />
-            Get multiple offers
+            Reach the largest audience
           </Text>
           <Text>
             <BiCheck size={25} />
-            Tax credit for trade-in
+            List it in minutes
           </Text>
           <Text>
             <BiCheck size={25} />
-            Convenient drop-off
+            Sell at a retail price
           </Text>
 
           <Button
@@ -73,7 +73,7 @@ const LandingTwo = () => {
             colorScheme='blue'
             variant={'outline'}
           >
-            Get your offer now
+            List your add
           </Button>
         </div>
       </div>
@@ -83,7 +83,7 @@ const LandingTwo = () => {
 
 const Wrapper = styled.div`
   position: relative;
-
+  border: 2px solid var(--chakra-colors-gray-100);
   .cards-holder {
     display: flex;
     gap: 1rem;
@@ -144,7 +144,7 @@ const Wrapper = styled.div`
   @media (min-width: 1024px) {
     min-height: calc(100vh - 58px);
     display: flex;
-    border: 2px solid var(--chakra-colors-gray-100);
+
     border-radius: 20px;
     padding: 1rem;
     max-width: 95vw;
