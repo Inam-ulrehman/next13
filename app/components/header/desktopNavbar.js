@@ -26,16 +26,22 @@ const DesktopNavbar = () => {
           </Link>
         </ListItem>
         <ListItem>
-          <Link className={path === '/about' ? 'active' : ''} href={'/about'}>
-            About
+          <Link className={path === '/cars' ? 'active' : ''} href={'/cars'}>
+            Shop Cars
           </Link>
         </ListItem>
         <ListItem>
           <Link
-            className={path === '/samples' ? 'active' : ''}
-            href={'/samples'}
+            className={path === '/sell-or-trade' ? 'active' : ''}
+            href={'/sell-or-trade'}
           >
-            Samples
+            Sell or Trade
+          </Link>
+          <Link
+            className={path === '/contact' ? 'active' : ''}
+            href={'/contact'}
+          >
+            Contact Us
           </Link>
         </ListItem>
       </List>

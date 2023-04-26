@@ -67,13 +67,18 @@ const MobileNavbar = () => {
                   </Link>
                 </ListItem>
                 <ListItem>
-                  <Link onClick={onClose} href={'/about'}>
-                    About
+                  <Link onClick={onClose} href={'/cars'}>
+                    Shop Cars
                   </Link>
                 </ListItem>
                 <ListItem>
-                  <Link onClick={onClose} href={'/samples'}>
-                    Samples
+                  <Link onClick={onClose} href={'/sell-or-trade'}>
+                    Sell or Trade
+                  </Link>
+                </ListItem>
+                <ListItem>
+                  <Link onClick={onClose} href={'/contact'}>
+                    Contact Us
                   </Link>
                 </ListItem>
               </List>
