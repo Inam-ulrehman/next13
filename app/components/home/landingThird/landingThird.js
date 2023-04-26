@@ -16,7 +16,7 @@ const LandingThird = () => {
       <div className='container'>
         {bodyType.map((items, index) => {
           return (
-            <div className='container-holder'>
+            <div key={index} className='container-holder'>
               <div className='image'>
                 <CldImage
                   src={items.src}

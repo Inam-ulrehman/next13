@@ -15,7 +15,11 @@ const LandingTwo = () => {
       <div className='cards-holder'>
         <div
           className='card-1'
-          style={{ backgroundColor: `${colorMode === 'dark' ? 'black' : ''}` }}
+          style={{
+            backgroundColor: `${
+              colorMode === 'dark' ? 'black' : 'var(--chakra-colors-blue-50)'
+            }`,
+          }}
         >
           <Text fontSize={'2xl'} fontWeight={'bold'}>
             Sell to dealership
@@ -46,7 +50,11 @@ const LandingTwo = () => {
         </div>
         <div
           className='card-2'
-          style={{ backgroundColor: `${colorMode === 'dark' ? 'black' : ''}` }}
+          style={{
+            backgroundColor: `${
+              colorMode === 'dark' ? 'black' : ' var(--chakra-colors-gray-50);'
+            }`,
+          }}
         >
           <Text fontSize={'2xl'} fontWeight={'bold'}>
             Sell privately
@@ -109,10 +117,8 @@ const Wrapper = styled.div`
     }
   }
   .card-1 {
-    background-color: var(--chakra-colors-blue-50);
   }
   .card-2 {
-    background-color: var(--chakra-colors-gray-50);
   }
 
   @media (max-width: 1024px) {
