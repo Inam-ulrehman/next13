@@ -3,7 +3,7 @@ import { bodyType } from '@/lib/data/bodyType'
 import { Box, Center, Heading, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
-import React from 'react'
+import { motion } from 'framer-motion'
 
 const LandingThird = () => {
   return (
@@ -16,7 +16,13 @@ const LandingThird = () => {
       <div className='container'>
         {bodyType.map((items, index) => {
           return (
-            <div key={index} className='container-holder'>
+            <motion.div
+              key={index}
+              className='container-holder'
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
               <div className='image'>
                 <CldImage
                   src={items.src}
@@ -26,7 +32,7 @@ const LandingThird = () => {
                 />
               </div>
               <Text>{items.name}</Text>
-            </div>
+            </motion.div>
           )
         })}
       </div>
