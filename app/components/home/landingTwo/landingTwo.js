@@ -52,7 +52,7 @@ const LandingTwo = () => {
           className='card-2'
           style={{
             backgroundColor: `${
-              colorMode === 'dark' ? 'black' : ' var(--chakra-colors-gray-50);'
+              colorMode === 'dark' ? 'black' : 'var(--chakra-colors-gray-50)'
             }`,
           }}
         >
@@ -121,7 +121,7 @@ const Wrapper = styled.div`
   .card-2 {
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 920px) {
     .cards-holder {
       overflow: scroll;
       ::-webkit-scrollbar {
@@ -147,9 +147,10 @@ const Wrapper = styled.div`
       width: 50vw;
     }
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 920px) {
     min-height: calc(100vh - 58px);
     display: flex;
+    align-items: center;
 
     border-radius: 20px;
     padding: 1rem;
@@ -158,7 +159,8 @@ const Wrapper = styled.div`
     margin: 0 auto;
 
     .image {
-      height: 70vh;
+      height: 50vh;
+      margin: 0 auto;
       img {
         width: 100%;
         height: 100%;
