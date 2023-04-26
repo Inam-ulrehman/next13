@@ -35,7 +35,7 @@ const MobileProfile = () => {
       return setState({ ...state, show: false })
     }
     setState({ ...state, show: true })
-  }, [token, state])
+  }, [token])
   return (
     <Wrapper>
       {state.show && (
