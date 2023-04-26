@@ -16,8 +16,7 @@ const IsMember = () => {
       return setState({ ...state, show: true })
     }
     setState({ ...state, show: false })
-    // eslint-disable-next-line no-use-before-define
-  }, [token])
+  }, [])
   return (
     <Wrapper>
       <Box>
