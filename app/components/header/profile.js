@@ -32,6 +32,7 @@ const Profile = () => {
       return setState({ ...state, show: false })
     }
     setState({ ...state, show: true })
+    // eslint-disable-next-line no-use-before-define
   }, [token])
   return (
     <Wrapper>
