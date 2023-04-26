@@ -84,7 +84,7 @@ const Wrapper = styled.div`
         padding: 1rem;
       }
       .image {
-        max-width: 15vw;
+        max-width: 16vw;
         margin: 0 auto;
 
         img {
@@ -97,6 +97,7 @@ const Wrapper = styled.div`
         text-align: center;
         text-transform: capitalize;
         font-size: large;
+        margin-top: -1rem;
       }
     }
   }
