@@ -1,7 +1,12 @@
 import React from 'react'
+import Form from './form'
 
 const Contact = () => {
-  return <div>Contact</div>
+  return (
+    <div>
+      <Form />
+    </div>
+  )
 }
 
 export default Contact
