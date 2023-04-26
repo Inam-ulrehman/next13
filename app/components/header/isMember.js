@@ -16,7 +16,7 @@ const IsMember = () => {
       return setState({ ...state, show: true })
     }
     setState({ ...state, show: false })
-  }, [])
+  }, [state, token])
   return (
     <Wrapper>
       <Box>

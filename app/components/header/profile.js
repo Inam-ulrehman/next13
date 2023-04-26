@@ -32,7 +32,7 @@ const Profile = () => {
       return setState({ ...state, show: false })
     }
     setState({ ...state, show: true })
-  }, [token])
+  }, [token, state])
   return (
     <Wrapper>
       {state.show && (
