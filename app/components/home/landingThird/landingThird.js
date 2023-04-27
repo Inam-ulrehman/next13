@@ -1,13 +1,14 @@
 'use client'
 import { bodyType } from '@/lib/data/bodyType'
-import { Box, Center, Heading, Text } from '@chakra-ui/react'
+import { Box, Center, Heading, Text, useColorMode } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
 import { motion } from 'framer-motion'
 
 const LandingThird = () => {
+  const { colorMode } = useColorMode()
   return (
-    <Wrapper>
+    <Wrapper colorMode={colorMode}>
       <Center>
         <Heading as={'h3'} padding={'2rem'} size={'lg'}>
           Browse by Body Type
@@ -41,15 +42,23 @@ const LandingThird = () => {
 }
 
 const Wrapper = styled.div`
-  min-height: calc(100vh - 58px);
-
   .container {
     .image {
     }
   }
+  p {
+    text-transform: capitalize;
+    font-size: large;
+    font-weight: 500;
+  }
   /* mobile only */
   @media (max-width: 768px) {
-    background-color: var(--chakra-colors-gray-100);
+    background-color: ${(props) =>
+      props.colorMode === 'light'
+        ? 'var(--chakra-colors-gray-100)'
+        : '#1a202c'};
+    min-height: calc(100vh - 58px);
+
     .container {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -58,7 +67,10 @@ const Wrapper = styled.div`
       margin: 0 auto;
       .container-holder {
         padding: 1rem;
-        background-color: var(--chakra-colors-whiteAlpha-900);
+        background-color: ${(props) =>
+          props.colorMode === 'light'
+            ? 'var(--chakra-colors-whiteAlpha-900)'
+            : '#1a202c'};
         border-radius: 10px;
       }
       .image {
@@ -101,10 +113,8 @@ const Wrapper = styled.div`
       }
       p {
         text-align: center;
-        text-transform: capitalize;
-        font-size: large;
+
         margin-top: -1rem;
-        font-weight: 500;
       }
     }
   }
