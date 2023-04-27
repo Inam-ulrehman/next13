@@ -43,7 +43,8 @@ const Filter = () => {
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerHeader>Find your ride</DrawerHeader>
-            <DrawerBody>
+            {/* filter options below */}
+            <DrawerBody mt={8}>
               <Make />
               <BodyType />
               <Price />
