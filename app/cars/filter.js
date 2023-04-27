@@ -36,14 +36,10 @@ const Filter = () => {
       >
         <DrawerOverlay>
           <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Find your ride</DrawerHeader>
+            <DrawerCloseButton pt={'2rem'} />
+            <DrawerHeader pt={'2rem'}>Find your ride</DrawerHeader>
             <DrawerBody></DrawerBody>
-            <DrawerFooter
-              display={'flex'}
-              justifyContent={'space-around'}
-              m={'2rem'}
-            >
+            <DrawerFooter display={'flex'} justifyContent={'space-around'}>
               <Link color={'teal.500'} href={'/cars'} fontWeight={'bold'}>
                 Clear all Filters
               </Link>
