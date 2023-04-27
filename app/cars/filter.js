@@ -1,8 +1,11 @@
+import { Link } from '@chakra-ui/next-js'
 import {
   Button,
   Drawer,
   DrawerBody,
+  DrawerCloseButton,
   DrawerContent,
+  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   useDisclosure,
@@ -11,15 +14,6 @@ import styled from '@emotion/styled'
 import React, { useRef } from 'react'
 import { BiAbacus } from 'react-icons/bi'
 
-const sortData = [
-  { name: 'Feature', path: '&sortField=feature' },
-  { name: 'Newest', path: '&sortField=newest' },
-  { name: 'Least Expensive', path: '&sortField=price&sortDirection=low' },
-  { name: 'Most Expensive', path: '&sortField=price&sortDirection=high' },
-  { name: 'Highest Mileage', path: '&sortField=mileage&sortDirection=high' },
-  { name: 'Lowest Mileage', path: '&sortField=mileage&sortDirection=low' },
-  { name: '', path: '' },
-]
 const Filter = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
@@ -36,19 +30,27 @@ const Filter = () => {
       <Drawer
         isOpen={isOpen}
         placement='bottom'
+        size={'full'}
         onClose={onClose}
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
           <DrawerContent>
-            <DrawerHeader>Sort</DrawerHeader>
-            <DrawerBody>
-              <Button>hello</Button>
-              <Button>hello</Button>
-              <Button>hello</Button>
-              <Button>hello</Button>
-              <Button>hello</Button>
-            </DrawerBody>
+            <DrawerCloseButton />
+            <DrawerHeader>Find your ride</DrawerHeader>
+            <DrawerBody></DrawerBody>
+            <DrawerFooter
+              display={'flex'}
+              justifyContent={'space-around'}
+              m={'2rem'}
+            >
+              <Link color={'teal.500'} href={'/cars'} fontWeight={'bold'}>
+                Clear all Filters
+              </Link>
+              <Button colorScheme='teal' size={'lg'}>
+                Show results
+              </Button>
+            </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
