@@ -29,7 +29,7 @@ const BodyType = () => {
             <div className='container'>
               {bodyType.map((item, index) => {
                 return (
-                  <Button key={index} variant={'outline'} mr={4} mt={4}>
+                  <Button mr={2} mt={2} key={index} variant={'outline'}>
                     <div className='image'>
                       <CldImage
                         src={item.src}
@@ -38,8 +38,7 @@ const BodyType = () => {
                         alt={item.name}
                       />
                     </div>
-                    <Box as='span' ml={2}>
-                      {' '}
+                    <Box as='span' ml={1}>
                       {item.name}
                     </Box>
                   </Button>
