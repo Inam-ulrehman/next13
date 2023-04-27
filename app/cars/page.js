@@ -1,11 +1,10 @@
-import React from 'react'
-import Search from './search'
+import Components from './components'
 
 const Cars = () => {
   return (
-    <div>
-      <Search />
-    </div>
+    <section>
+      <Components />
+    </section>
   )
 }
 
