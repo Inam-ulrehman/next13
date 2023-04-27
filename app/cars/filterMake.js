@@ -1,3 +1,4 @@
+import { makes } from '@/lib/data/carMakes'
 import {
   Accordion,
   AccordionButton,
@@ -5,6 +6,7 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Checkbox,
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import React from 'react'
@@ -23,16 +25,26 @@ const Make = () => {
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            <div className='container'>
+              {makes.map((item, index) => {
+                return (
+                  <div key={index}>
+                    <Checkbox size={'lg'}>{item.company}</Checkbox>
+                  </div>
+                )
+              })}
+            </div>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
     </Wrapper>
   )
 }
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+`
 
 export default Make
