@@ -19,6 +19,7 @@ const Components = () => {
 const Wrapper = styled.div`
   .filter-sort {
     display: flex;
+    justify-content: center;
   }
 `
 

@@ -13,6 +13,10 @@ import {
 import styled from '@emotion/styled'
 import React, { useRef } from 'react'
 import { BiAbacus } from 'react-icons/bi'
+import Make from './filterMake'
+import BodyType from './filterBodyType'
+import Price from './filterPrice'
+import Year from './filterYear'
 
 const Filter = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -39,7 +43,12 @@ const Filter = () => {
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerHeader>Find your ride</DrawerHeader>
-            <DrawerBody></DrawerBody>
+            <DrawerBody>
+              <Make />
+              <BodyType />
+              <Price />
+              <Year />
+            </DrawerBody>
             <DrawerFooter display={'flex'} justifyContent={'space-around'}>
               <Link color={'teal.500'} href={'/cars'} fontWeight={'bold'}>
                 Clear all Filters
