@@ -2,7 +2,8 @@
 import Search from './search'
 import Filter from './filter'
 import Sort from './sort'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
+
 const Components = () => {
   return (
     <Wrapper>

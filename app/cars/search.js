@@ -1,6 +1,7 @@
 import { Input, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react'
+import styled from '@emotion/styled'
 import React from 'react'
-import styled from 'styled-components'
+
 import { GoSearch } from 'react-icons/go'
 
 const Search = () => {
