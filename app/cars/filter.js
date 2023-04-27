@@ -30,15 +30,15 @@ const Filter = () => {
       <Drawer
         isOpen={isOpen}
         placement='bottom'
-        // size={'full'}
+        size={'full'}
         isFullHeight={true}
         onClose={onClose}
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
           <DrawerContent>
-            <DrawerCloseButton pt={'2rem'} />
-            <DrawerHeader pt={'2rem'}>Find your ride</DrawerHeader>
+            <DrawerCloseButton />
+            <DrawerHeader>Find your ride</DrawerHeader>
             <DrawerBody></DrawerBody>
             <DrawerFooter display={'flex'} justifyContent={'space-around'}>
               <Link color={'teal.500'} href={'/cars'} fontWeight={'bold'}>
