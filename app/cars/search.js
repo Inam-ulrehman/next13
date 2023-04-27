@@ -8,11 +8,9 @@ const Search = () => {
   return (
     <Wrapper>
       <InputGroup boxShadow={'lg'}>
-        <InputLeftElement
-          pointerEvents=''
-          children={<GoSearch />}
-          color='red.300'
-        />
+        <InputLeftElement pointerEvents='' color='red.300'>
+          <GoSearch />
+        </InputLeftElement>
         <Input type='tel' placeholder='Search vehicles, models, or keywords' />
       </InputGroup>
     </Wrapper>
