@@ -1,5 +1,5 @@
 'use client'
-
+import { customFetch } from '@/lib/axios/customFetch'
 import {
   Button,
   Center,
@@ -9,13 +9,55 @@ import {
   Input,
   Text,
   Textarea,
+  useToast,
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
+import { useState } from 'react'
 const src = 'v1678717865/Inamwebsolutions-nextjs/Fresh_INAMWEBSOLUTIONS_hh0krz'
+
+const initialsState = {
+  name: '',
+  email: '',
+  mobile: '',
+  subject: '',
+  message: '',
+  isLoading: '',
+}
 const Form = () => {
+  const toast = useToast()
+  const [state, setState] = useState(initialsState)
+  const { name, email, mobile, subject, message, isLoading } = state
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      setState({ ...state, isLoading: true })
+      const response = await customFetch.post('/contacts', state)
+      toast({
+        description: response.data.msg,
+        status: 'success',
+        position: 'top-right',
+      })
+      setState(initialsState)
+    } catch (error) {
+      setState({ ...state, isLoading: false })
+      toast({
+        description: error.response.data.msg,
+        status: 'error',
+        position: 'top-right',
+      })
+    }
+  }
+
+  const handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    setState({ ...state, [name]: value })
+  }
+
   return (
-    <Wrapper>
+    <Wrapper onSubmit={handleSubmit}>
       <div className='image-box'>
         <div className='title'>
           <Heading as={'h1'}>Submit a question</Heading>
@@ -37,18 +79,55 @@ const Form = () => {
 
         <FormControl isRequired>
           <FormLabel>Name</FormLabel>
-          <Input type='text' />
+          <Input
+            type='text'
+            id='name'
+            name='name'
+            value={name}
+            onChange={handleChange}
+          />
           <FormLabel>Email</FormLabel>
-          <Input type='email' />
+          <Input
+            type='email'
+            id='email'
+            name='email'
+            value={email}
+            onChange={handleChange}
+          />
           <FormLabel>Mobile</FormLabel>
-          <Input type='number' />
+          <Input
+            type='number'
+            id='mobile'
+            name='mobile'
+            value={mobile}
+            onChange={handleChange}
+          />
           <FormLabel>subject</FormLabel>
-          <Input type='text' />
+          <Input
+            type='text'
+            id='subject'
+            name='subject'
+            value={subject}
+            onChange={handleChange}
+          />
           <FormLabel>Message</FormLabel>
 
-          <Textarea placeholder='Type your message here' />
+          <Textarea
+            placeholder='Type your message here'
+            id='message'
+            name='message'
+            value={message}
+            onChange={handleChange}
+          />
         </FormControl>
-        <Button mt={'1rem'} w={'100%'} colorScheme='teal' type='submit'>
+        <Button
+          isLoading={isLoading}
+          loadingText='Submitting'
+          mt={'1rem'}
+          w={'100%'}
+          colorScheme='teal'
+          type='submit'
+        >
           Submit
         </Button>
       </form>
