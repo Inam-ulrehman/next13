@@ -62,7 +62,7 @@ const Sort = () => {
 const Wrapper = styled.div`
   .chakra-button {
     margin: 1rem;
-    width: 42vw;
+    width: 40vw;
   }
 `
 export default Sort

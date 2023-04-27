@@ -30,7 +30,8 @@ const Filter = () => {
       <Drawer
         isOpen={isOpen}
         placement='bottom'
-        size={'full'}
+        // size={'full'}
+        isFullHeight={true}
         onClose={onClose}
         finalFocusRef={btnRef}
       >
