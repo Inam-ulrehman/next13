@@ -1,3 +1,4 @@
+import { bodyType } from '@/lib/data/bodyType'
 import {
   Accordion,
   AccordionButton,
@@ -5,8 +6,10 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Button,
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
+import { CldImage } from 'next-cloudinary'
 import React from 'react'
 
 const BodyType = () => {
@@ -22,12 +25,47 @@ const BodyType = () => {
               <AccordionIcon />
             </AccordionButton>
           </h2>
-          <AccordionPanel>hello</AccordionPanel>
+          <AccordionPanel>
+            <div className='container'>
+              {bodyType.map((item, index) => {
+                return (
+                  <Button key={index} variant={'outline'} mr={4} mt={4}>
+                    <div className='image'>
+                      <CldImage
+                        src={item.src}
+                        width={720}
+                        height={720}
+                        alt={item.name}
+                      />
+                    </div>
+                    <Box as='span' ml={2}>
+                      {' '}
+                      {item.name}
+                    </Box>
+                  </Button>
+                )
+              })}
+            </div>
+          </AccordionPanel>
         </AccordionItem>
       </Accordion>
     </Wrapper>
   )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  .container {
+    .image {
+      max-width: 40px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    span {
+      text-transform: capitalize;
+    }
+  }
+`
 export default BodyType
