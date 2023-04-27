@@ -1,6 +1,7 @@
 import {
   Button,
   Drawer,
+  DrawerBody,
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
@@ -41,6 +42,13 @@ const Filter = () => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerHeader>Sort</DrawerHeader>
+            <DrawerBody>
+              <Button>hello</Button>
+              <Button>hello</Button>
+              <Button>hello</Button>
+              <Button>hello</Button>
+              <Button>hello</Button>
+            </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>

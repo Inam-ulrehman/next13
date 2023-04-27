@@ -33,4 +33,14 @@ export const theme = extendTheme({
       // },
     },
   },
+  components: {
+    Divider: {
+      defaultProps: { size: 'md' },
+      sizes: {
+        lg: { borderWidth: '4px' },
+        md: { borderWidth: '2px' },
+        sm: { borderWidth: '1px' },
+      },
+    },
+  },
 })
