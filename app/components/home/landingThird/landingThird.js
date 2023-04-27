@@ -70,7 +70,7 @@ const Wrapper = styled.div`
         background-color: ${(props) =>
           props.colorMode === 'light'
             ? 'var(--chakra-colors-whiteAlpha-900)'
-            : '#1a202c'};
+            : 'black'};
         border-radius: 10px;
       }
       .image {
