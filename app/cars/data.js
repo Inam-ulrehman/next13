@@ -1,10 +1,10 @@
 export const sortData = [
-  { name: 'Feature', path: 'sortField=feature' },
-  { name: 'Newest', path: 'sortField=newest' },
-  { name: 'Least Expensive', path: 'sortField=priceLow' },
-  { name: 'Most Expensive', path: 'sortField=priceHigh' },
-  { name: 'Highest Mileage', path: 'sortField=mileageHigh' },
-  { name: 'Lowest Mileage', path: 'sortField=mileageLow' },
+  { name: 'Feature', path: 'feature' },
+  { name: 'Newest', path: 'newest' },
+  { name: 'Least Expensive', path: 'priceLow' },
+  { name: 'Most Expensive', path: 'priceHigh' },
+  { name: 'Highest Mileage', path: 'mileageHigh' },
+  { name: 'Lowest Mileage', path: 'mileageLow' },
 ]
 
 export const colors = [

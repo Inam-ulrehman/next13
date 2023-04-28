@@ -17,6 +17,7 @@ import { filterParams } from './lib'
 
 const Sort = () => {
   const searchParams = useSearchParams()
+  const sortField = searchParams.get('sortField')
   const pathName = usePathname()
   const router = useRouter()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -24,13 +25,12 @@ const Sort = () => {
 
   const handleSort = (item) => {
     onClose()
-    const sortField = searchParams.get('sortField')
     if (sortField) {
       const newSearchParams = filterParams(searchParams, 'sortField')
-      router.replace(`${pathName}?${item.path}${newSearchParams}`)
+      router.replace(`${pathName}?sortField=${item.path}${newSearchParams}`)
       return
     }
-    router.replace(`${pathName}?${item.path}`)
+    router.replace(`${pathName}?sortField=${item.path}`)
   }
   return (
     <Wrapper>
@@ -57,6 +57,7 @@ const Sort = () => {
               {sortData.map((item, index) => {
                 return (
                   <Button
+                    color={sortField === item.path ? 'red.300' : ''}
                     key={index}
                     variant={'ghost'}
                     width='100%'
@@ -79,6 +80,9 @@ const Wrapper = styled.div`
   .chakra-button {
     margin: 1rem;
     width: 40vw;
+  }
+  .active {
+    color: var(--chakra-colors-red-300);
   }
 `
 export default Sort
