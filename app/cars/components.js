@@ -3,6 +3,7 @@ import Search from './search'
 import Filter from './filter'
 import Sort from './sort'
 import styled from '@emotion/styled'
+import List from './list'
 
 const Components = () => {
   return (
@@ -12,6 +13,7 @@ const Components = () => {
         <Filter />
         <Sort />
       </div>
+      <List />
     </Wrapper>
   )
 }

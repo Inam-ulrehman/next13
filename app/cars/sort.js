@@ -12,10 +12,27 @@ import styled from '@emotion/styled'
 import React, { useRef } from 'react'
 import { TbArrowsSort } from 'react-icons/tb'
 import { sortData } from './data'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { sortParams } from './lib'
 
 const Sort = () => {
+  const searchParams = useSearchParams()
+  const pathName = usePathname()
+  const router = useRouter()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
+
+  const handleSort = (item) => {
+    const path = item.path
+
+    const sortField = searchParams.get('sortField')
+    if (sortField) {
+      const newSearchParams = sortParams(searchParams)
+      router.replace(`${pathName}?${item.path}&${newSearchParams}`)
+      return
+    }
+    router.replace(`${pathName}?${item.path}`)
+  }
   return (
     <Wrapper>
       <Button
@@ -45,7 +62,7 @@ const Sort = () => {
                     variant={'ghost'}
                     width='100%'
                     justifyContent='flex-start'
-                    onClick={onClose}
+                    onClick={() => handleSort(item)}
                   >
                     {item.name}
                   </Button>
