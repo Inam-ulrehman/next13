@@ -13,7 +13,7 @@ import React, { useRef } from 'react'
 import { TbArrowsSort } from 'react-icons/tb'
 import { sortData } from './data'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { filterParams } from './lib'
+import { filterSort } from './lib'
 
 const Sort = () => {
   const searchParams = useSearchParams()
@@ -26,9 +26,15 @@ const Sort = () => {
   const handleSort = (item) => {
     onClose()
     if (sortField) {
-      const newSearchParams = filterParams(searchParams, 'sortField')
+      const newSearchParams = filterSort(searchParams, 'sortField')
       router.replace(`${pathName}?sortField=${item.path}${newSearchParams}`)
       return
+    }
+    const existingSearchParams = searchParams.toString()
+    if (existingSearchParams) {
+      return router.replace(
+        `${pathName}?sortField=${item.path}&${existingSearchParams}`
+      )
     }
     router.replace(`${pathName}?sortField=${item.path}`)
   }

@@ -9,9 +9,27 @@ import {
   Checkbox,
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
 
 const Make = () => {
+  const searchParams = useSearchParams()
+  const make = searchParams.get('make')
+  const pathName = usePathname()
+  const router = useRouter()
+
+  const handleSelect = (company) => {
+    console.log(company)
+    router.replace(`${pathName}?make=${company}`)
+    if (make) {
+    }
+    // if (make) {
+    //   const newSearchParams = filterParams(searchParams, 'make')
+    //   router.replace(`${pathName}?make=${item.path}${newSearchParams}`)
+    //   return
+    // }
+    // router.replace(`${pathName}?make=${item.path}`)
+  }
   return (
     <Wrapper>
       <Accordion allowToggle>
@@ -29,7 +47,12 @@ const Make = () => {
               {makes.map((item, index) => {
                 return (
                   <div key={index}>
-                    <Checkbox size={'lg'}>{item.company}</Checkbox>
+                    <Checkbox
+                      onChange={() => handleSelect(item.company)}
+                      size={'lg'}
+                    >
+                      {item.company}
+                    </Checkbox>
                   </div>
                 )
               })}

@@ -1,4 +1,4 @@
-export const filterParams = (searchParams, filter) => {
+export const filterSort = (searchParams, filter) => {
   const result = searchParams
     .toString()
     .split('&')
