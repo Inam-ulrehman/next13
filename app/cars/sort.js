@@ -23,8 +23,7 @@ const Sort = () => {
   const btnRef = useRef()
 
   const handleSort = (item) => {
-    const path = item.path
-
+    onClose()
     const sortField = searchParams.get('sortField')
     if (sortField) {
       const newSearchParams = sortParams(searchParams)
