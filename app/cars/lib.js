@@ -1,11 +1,12 @@
-export const sortParams = (searchParams) => {
+export const filterParams = (searchParams, filter) => {
   const result = searchParams
     .toString()
     .split('&')
-    .filter(
-      (item) =>
-        !item.startsWith('sortField') && !item.startsWith('sortDirection')
-    )
+    .filter((item) => !item.startsWith(filter))
     .join('&')
-  return result
+  if (result.length === 0) {
+    return ''
+  }
+  const data = `&${result}`
+  return data
 }

@@ -19,8 +19,8 @@ const List = () => {
   // console.log(pathname)
 
   useEffect(() => {
-    console.log(priceHigh)
-    console.log(make)
+    console.log(searchParams.toString())
+    console.log(searchParams.toString().length)
   }, [pathname, searchParams])
 
   return <div>List</div>
