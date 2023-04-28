@@ -10,3 +10,5 @@ export const filterSort = (searchParams, filter) => {
   const data = `&${result}`
   return data
 }
+
+export const filterParams = (searchParams, filter) => {}

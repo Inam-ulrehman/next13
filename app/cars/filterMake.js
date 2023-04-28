@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Make = () => {
   const searchParams = useSearchParams()
@@ -19,16 +19,8 @@ const Make = () => {
   const router = useRouter()
 
   const handleSelect = (company) => {
-    console.log(company)
-    router.replace(`${pathName}?make=${company}`)
-    if (make) {
-    }
-    // if (make) {
-    //   const newSearchParams = filterParams(searchParams, 'make')
-    //   router.replace(`${pathName}?make=${item.path}${newSearchParams}`)
-    //   return
-    // }
-    // router.replace(`${pathName}?make=${item.path}`)
+    router.push(`cars?${company}`)
+    console.log(searchParams.toString())
   }
   return (
     <Wrapper>
