@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Input,
   RangeSlider,
   RangeSliderFilledTrack,
   RangeSliderThumb,
@@ -12,7 +13,6 @@ import {
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import React from 'react'
-import { Input } from 'style-components'
 
 const Year = () => {
   return (
