@@ -17,6 +17,7 @@ import Make from './filterMake'
 import BodyType from './filterBodyType'
 import Price from './filterPrice'
 import Year from './filterYear'
+import Colors from './filterColors'
 
 const Filter = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -49,6 +50,7 @@ const Filter = () => {
               <BodyType />
               <Price />
               <Year />
+              <Colors />
             </DrawerBody>
             <DrawerFooter display={'flex'} justifyContent={'space-around'}>
               <Link color={'teal.500'} href={'/cars'} fontWeight={'bold'}>

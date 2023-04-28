@@ -5,9 +5,14 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+  RangeSliderTrack,
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import React from 'react'
+import { Input } from 'style-components'
 
 const Year = () => {
   return (
@@ -32,7 +37,33 @@ const Year = () => {
               <AccordionIcon />
             </AccordionButton>
           </h2>
-          <AccordionPanel>hello</AccordionPanel>
+          <AccordionPanel>
+            <div className='year-range-input'>
+              <p>price range</p>
+              <div className='amount'>
+                <Input type='text' />
+                <Input type='text' />
+              </div>
+            </div>
+            <RangeSlider
+              aria-label={['min', 'max']}
+              colorScheme='pink'
+              defaultValue={[10, 30]}
+            >
+              <RangeSliderTrack>
+                <RangeSliderFilledTrack></RangeSliderFilledTrack>
+              </RangeSliderTrack>
+              <RangeSliderThumb index={0}></RangeSliderThumb>
+              <RangeSliderThumb index={1}></RangeSliderThumb>
+            </RangeSlider>
+            <div
+              className='year-range'
+              style={{ display: 'flex', justifyContent: 'space-between' }}
+            >
+              <span>$0</span>
+              <span>$10000.00</span>
+            </div>
+          </AccordionPanel>
         </AccordionItem>
       </Accordion>
     </Wrapper>
