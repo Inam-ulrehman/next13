@@ -20,7 +20,8 @@ const Make = () => {
   const router = useRouter()
 
   const handleSelect = (searchProp) => {
-    filterMakeParams(searchParams, searchProp, param, router)
+    const searchWord = 'make'
+    filterMakeParams(searchParams, searchProp, param, router, searchWord)
   }
   return (
     <Wrapper>

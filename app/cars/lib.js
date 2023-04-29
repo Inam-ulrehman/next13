@@ -11,11 +11,17 @@ export const filterSort = (searchParams, filter) => {
   return data
 }
 
-export const filterMakeParams = (searchParams, searchProp, param, router) => {
+export const filterMakeParams = (
+  searchParams,
+  searchProp,
+  param,
+  router,
+  searchWord
+) => {
   const otherQuery = searchParams
     .toString()
     .split('&')
-    .filter((item) => !item.startsWith('make'))
+    .filter((item) => !item.startsWith(searchWord))
     .join('&')
   if (param) {
     if (param.match(searchProp)) {
@@ -30,27 +36,29 @@ export const filterMakeParams = (searchParams, searchProp, param, router) => {
         return router.push(`cars?`)
       }
       if (otherQuery) {
-        return router.push(`cars?make=${remove}&${otherQuery}`)
+        return router.push(`cars?${searchWord}=${remove}&${otherQuery}`)
       }
-      return router.push(`cars?make=${remove}`)
+      return router.push(`cars?${searchWord}=${remove}`)
     }
     const filterMake = searchParams
       .toString()
       .split('&')
-      .filter((item) => item.startsWith('make'))
+      .filter((item) => item.startsWith(searchWord))
       .toString()
 
     let previousMake = filterMake.toString().split('=')[1].replace(/%2C/g, ',')
 
     if (otherQuery) {
-      router.push(`cars?make=${previousMake},${searchProp}&${otherQuery}`)
+      router.push(
+        `cars?${searchWord}=${previousMake},${searchProp}&${otherQuery}`
+      )
       return
     }
-    router.push(`cars?make=${previousMake},${searchProp}`)
+    router.push(`cars?${searchWord}=${previousMake},${searchProp}`)
     return
   }
   if (otherQuery) {
-    return router.push(`cars?make=${searchProp}&${otherQuery}`)
+    return router.push(`cars?${searchWord}=${searchProp}&${otherQuery}`)
   }
-  router.push(`cars?make=${searchProp}`)
+  router.push(`cars?${searchWord}=${searchProp}`)
 }
