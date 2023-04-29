@@ -11,59 +11,16 @@ import {
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import React, { useEffect } from 'react'
+
+import { filterMakeParams } from './lib'
 
 const Make = () => {
   const searchParams = useSearchParams()
-  const make = searchParams.get('make')
-  const pathName = usePathname()
+  const param = searchParams.get('make')
   const router = useRouter()
 
-  const handleSelect = (company) => {
-    const otherQuery = searchParams
-      .toString()
-      .split('&')
-      .filter((item) => !item.startsWith('make'))
-      .join('&')
-    if (make) {
-      if (make.match(company)) {
-        const remove = make
-          .split(',')
-          .filter((item) => !item.startsWith(company))
-          .toString()
-        if (remove.length === 0) {
-          if (otherQuery) {
-            return router.push(`cars?${otherQuery}`)
-          }
-          return router.push(`cars?`)
-        }
-        if (otherQuery) {
-          return router.push(`cars?make=${remove}&${otherQuery}`)
-        }
-        return router.push(`cars?make=${remove}`)
-      }
-      const filterMake = searchParams
-        .toString()
-        .split('&')
-        .filter((item) => item.startsWith('make'))
-        .toString()
-
-      let previousMake = filterMake
-        .toString()
-        .split('=')[1]
-        .replace(/%2C/g, ',')
-
-      if (otherQuery) {
-        router.push(`cars?make=${previousMake},${company}&${otherQuery}`)
-        return
-      }
-      router.push(`cars?make=${previousMake},${company}`)
-      return
-    }
-    if (otherQuery) {
-      return router.push(`cars?make=${company}&${otherQuery}`)
-    }
-    router.push(`cars?make=${company}`)
+  const handleSelect = (searchProp) => {
+    filterMakeParams(searchParams, searchProp, param, router)
   }
   return (
     <Wrapper>
@@ -83,6 +40,7 @@ const Make = () => {
                 return (
                   <div key={index}>
                     <Checkbox
+                      defaultChecked={param?.match(item.company)}
                       onChange={() => handleSelect(item.company)}
                       size={'lg'}
                     >
