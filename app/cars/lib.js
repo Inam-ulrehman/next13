@@ -26,7 +26,6 @@ export const filterMakeParams = (
     .join('&')
     .replace(/%2C/g, ',')
 
-  console.log(otherQuery)
   if (param) {
     if (param.match(searchProp)) {
       const remove = param
