@@ -1,4 +1,5 @@
 import { makes } from '@/lib/data/carMakes'
+import { titleCase } from '@/lib/helper'
 import {
   Accordion,
   AccordionButton,
@@ -19,8 +20,50 @@ const Make = () => {
   const router = useRouter()
 
   const handleSelect = (company) => {
-    router.push(`cars?${company}`)
-    console.log(searchParams.toString())
+    const otherQuery = searchParams
+      .toString()
+      .split('&')
+      .filter((item) => !item.startsWith('make'))
+      .join('&')
+    if (make) {
+      if (make.match(company)) {
+        const remove = make
+          .split(',')
+          .filter((item) => !item.startsWith(company))
+          .toString()
+        if (remove.length === 0) {
+          if (otherQuery) {
+            return router.push(`cars?${otherQuery}`)
+          }
+          return router.push(`cars?`)
+        }
+        if (otherQuery) {
+          return router.push(`cars?make=${remove}&${otherQuery}`)
+        }
+        return router.push(`cars?make=${remove}`)
+      }
+      const filterMake = searchParams
+        .toString()
+        .split('&')
+        .filter((item) => item.startsWith('make'))
+        .toString()
+
+      let previousMake = filterMake
+        .toString()
+        .split('=')[1]
+        .replace(/%2C/g, ',')
+
+      if (otherQuery) {
+        router.push(`cars?make=${previousMake},${company}&${otherQuery}`)
+        return
+      }
+      router.push(`cars?make=${previousMake},${company}`)
+      return
+    }
+    if (otherQuery) {
+      return router.push(`cars?make=${company}&${otherQuery}`)
+    }
+    router.push(`cars?make=${company}`)
   }
   return (
     <Wrapper>
@@ -43,7 +86,7 @@ const Make = () => {
                       onChange={() => handleSelect(item.company)}
                       size={'lg'}
                     >
-                      {item.company}
+                      {titleCase(item.company)}
                     </Checkbox>
                   </div>
                 )
