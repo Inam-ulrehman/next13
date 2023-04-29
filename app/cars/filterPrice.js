@@ -6,15 +6,39 @@ import {
   AccordionPanel,
   Box,
   Input,
+  InputGroup,
+  InputLeftAddon,
   RangeSlider,
   RangeSliderFilledTrack,
   RangeSliderThumb,
   RangeSliderTrack,
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
-import React from 'react'
+import React, { useState } from 'react'
 
+const initialState = {
+  priceLow: '',
+  priceHigh: '',
+}
 const Price = () => {
+  const [state, setState] = useState(initialState)
+  const { priceLow, priceHigh } = state
+
+  const handleValue = (value) => {
+    const priceLow = (value[0] * 1000).toLocaleString()
+    const priceHigh = (value[1] * 1000).toLocaleString()
+    setState({ ...state, priceLow, priceHigh })
+  }
+  const handleValueEnd = (value) => {
+    const priceLow = value[0] * 1000
+    const priceHigh = value[1] * 1000
+  }
+
+  const handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    setState({ ...state, [name]: value })
+  }
   return (
     <Wrapper>
       <Accordion allowToggle>
@@ -31,14 +55,35 @@ const Price = () => {
             <div className='price-range-input'>
               <p>price range</p>
               <div className='amount'>
-                <Input type='text' />
-                <Input type='text' />
+                <InputGroup>
+                  <InputLeftAddon>$</InputLeftAddon>
+                  <Input
+                    type='text'
+                    value={priceLow}
+                    name='priceLow'
+                    id='priceLow'
+                    onChange={handleChange}
+                  />
+                </InputGroup>
+
+                <InputGroup>
+                  <InputLeftAddon>$</InputLeftAddon>
+                  <Input
+                    type='text'
+                    value={priceHigh}
+                    name='priceHigh'
+                    id='priceHigh'
+                    onChange={handleChange}
+                  />
+                </InputGroup>
               </div>
             </div>
             <RangeSlider
               aria-label={['min', 'max']}
               colorScheme='pink'
-              defaultValue={[10, 30]}
+              defaultValue={[20, 70]}
+              onChangeEnd={(val) => handleValueEnd(val)}
+              onChange={(val) => handleValue(val)}
             >
               <RangeSliderTrack>
                 <RangeSliderFilledTrack></RangeSliderFilledTrack>
@@ -63,7 +108,7 @@ const Price = () => {
 const Wrapper = styled.div`
   .price-range-input {
     input {
-      max-width: 150px;
+      max-width: 100px;
     }
     display: flex;
     justify-content: space-between;
