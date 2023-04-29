@@ -10,9 +10,21 @@ import {
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
+import { useRouter, useSearchParams } from 'next/navigation'
+
 import React from 'react'
+import { filterMakeParams } from './lib'
 
 const BodyType = () => {
+  const searchParams = useSearchParams()
+  const param = searchParams.get('type')
+  const router = useRouter()
+
+  const handleClick = (searchProp) => {
+    const searchWord = 'type'
+    filterMakeParams(searchParams, searchProp, param, router, searchWord)
+  }
+
   return (
     <Wrapper>
       <Accordion allowToggle>
@@ -29,7 +41,13 @@ const BodyType = () => {
             <div className='container'>
               {bodyType.map((item, index) => {
                 return (
-                  <Button mr={2} mt={2} key={index} variant={'outline'}>
+                  <Button
+                    onClick={() => handleClick(item.name)}
+                    mr={2}
+                    mt={2}
+                    key={index}
+                    variant={'outline'}
+                  >
                     <div className='image'>
                       <CldImage
                         src={item.src}

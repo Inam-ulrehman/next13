@@ -4,6 +4,7 @@ export const filterSort = (searchParams, filter) => {
     .split('&')
     .filter((item) => !item.startsWith(filter))
     .join('&')
+
   if (result.length === 0) {
     return ''
   }
@@ -23,6 +24,9 @@ export const filterMakeParams = (
     .split('&')
     .filter((item) => !item.startsWith(searchWord))
     .join('&')
+    .replace(/%2C/g, ',')
+
+  console.log(otherQuery)
   if (param) {
     if (param.match(searchProp)) {
       const remove = param
