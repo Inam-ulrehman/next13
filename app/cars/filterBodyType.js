@@ -42,6 +42,7 @@ const BodyType = () => {
               {bodyType.map((item, index) => {
                 return (
                   <Button
+                    className={param?.match(item.name) ? 'active' : ''}
                     onClick={() => handleClick(item.name)}
                     mr={2}
                     mt={2}
@@ -83,6 +84,10 @@ const Wrapper = styled.div`
     span {
       text-transform: capitalize;
     }
+  }
+  .active {
+    border: 2px solid var(--chakra-colors-red-200);
+    color: var(--chakra-colors-red-300);
   }
 `
 export default BodyType
