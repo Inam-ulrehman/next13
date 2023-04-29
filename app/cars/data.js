@@ -8,16 +8,16 @@ export const sortData = [
 ]
 
 export const colors = [
-  { color: 'White', hexCode: '#FFFFFF' },
-  { color: 'Black', hexCode: '#000000' },
-  { color: 'Silver', hexCode: '#C0C0C0' },
-  { color: 'Grey', hexCode: '#808080' },
-  { color: 'Blue', hexCode: '#0000FF' },
-  { color: 'Red', hexCode: '#FF0000' },
-  { color: 'Green', hexCode: '#008000' },
-  { color: 'Beige', hexCode: '#F5F5DC' },
-  { color: 'Gold', hexCode: '#FFD700' },
-  { color: 'Brown', hexCode: '#A52A2A' },
-  { color: 'Orange', hexCode: '#FFA500' },
-  { color: 'Yellow', hexCode: '#FFFF00' },
+  { color: 'white', hexCode: '#FFFFFF' },
+  { color: 'black', hexCode: '#000000' },
+  { color: 'silver', hexCode: '#C0C0C0' },
+  { color: 'grey', hexCode: '#808080' },
+  { color: 'blue', hexCode: '#0000FF' },
+  { color: 'red', hexCode: '#FF0000' },
+  { color: 'green', hexCode: '#008000' },
+  { color: 'beige', hexCode: '#F5F5DC' },
+  { color: 'gold', hexCode: '#FFD700' },
+  { color: 'brown', hexCode: '#A52A2A' },
+  { color: 'orange', hexCode: '#FFA500' },
+  { color: 'yellow', hexCode: '#FFFF00' },
 ]

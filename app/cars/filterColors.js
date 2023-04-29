@@ -10,8 +10,18 @@ import {
 import styled from '@emotion/styled'
 import React from 'react'
 import { colors } from './data'
+import { titleCase } from '@/lib/helper'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { filterMakeParams } from './lib'
 
 const Colors = () => {
+  const searchParams = useSearchParams()
+  const param = searchParams.get('color')
+  const router = useRouter()
+  const handleClick = (searchProp) => {
+    const searchWord = 'color'
+    filterMakeParams(searchParams, searchProp, param, router, searchWord)
+  }
   return (
     <Wrapper>
       <Accordion allowToggle>
@@ -29,11 +39,13 @@ const Colors = () => {
               {colors.map((item, index) => {
                 return (
                   <Button
+                    onClick={() => handleClick(item.color)}
                     fontWeight={'light'}
                     variant={'outline'}
                     mr={1}
                     mt={1}
                     key={index}
+                    className={param?.match(item.color) ? 'active' : ''}
                   >
                     <Box
                       as='span'
@@ -44,7 +56,7 @@ const Colors = () => {
                       mr={2}
                       backgroundColor={item.hexCode}
                     />{' '}
-                    {item.color}
+                    {titleCase(item.color)}
                   </Button>
                 )
               })}
@@ -68,6 +80,9 @@ const Wrapper = styled.div`
       justify-content: space-between;
       gap: 1rem;
     }
+  }
+  .active {
+    border: 2px solid var(--chakra-colors-red-200);
   }
 `
 export default Colors
