@@ -14,13 +14,17 @@ import {
   RangeSliderTrack,
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import React, { useState } from 'react'
 
 const initialState = {
-  priceLow: '',
-  priceHigh: '',
+  priceLow: `10,000`,
+  priceHigh: `50,000`,
 }
 const Price = () => {
+  const searchParams = useSearchParams()
+  const path = usePathname()
+  const router = useRouter()
   const [state, setState] = useState(initialState)
   const { priceLow, priceHigh } = state
 
@@ -29,9 +33,25 @@ const Price = () => {
     const priceHigh = (value[1] * 1000).toLocaleString()
     setState({ ...state, priceLow, priceHigh })
   }
+
   const handleValueEnd = (value) => {
     const priceLow = value[0] * 1000
     const priceHigh = value[1] * 1000
+    const otherQuery = searchParams
+      .toString()
+      .split('&')
+      .filter((item) => {
+        return !item.startsWith('priceLow') && !item.startsWith('priceHigh')
+      })
+      .join('&')
+      .replace(/%2C/g, ',')
+    if (otherQuery) {
+      return router.replace(
+        `${path}?priceLow=${priceLow}&priceHigh=${priceHigh}&${otherQuery}`
+      )
+    }
+
+    router.replace(`${path}?priceLow=${priceLow}&priceHigh=${priceHigh}`)
   }
 
   const handleChange = (e) => {
@@ -58,6 +78,7 @@ const Price = () => {
                 <InputGroup>
                   <InputLeftAddon>$</InputLeftAddon>
                   <Input
+                    isReadOnly={true}
                     type='text'
                     value={priceLow}
                     name='priceLow'
@@ -69,6 +90,7 @@ const Price = () => {
                 <InputGroup>
                   <InputLeftAddon>$</InputLeftAddon>
                   <Input
+                    isReadOnly={true}
                     type='text'
                     value={priceHigh}
                     name='priceHigh'
@@ -80,7 +102,7 @@ const Price = () => {
             </div>
             <RangeSlider
               aria-label={['min', 'max']}
-              colorScheme='pink'
+              colorScheme='red'
               defaultValue={[20, 70]}
               onChangeEnd={(val) => handleValueEnd(val)}
               onChange={(val) => handleValue(val)}
@@ -95,8 +117,8 @@ const Price = () => {
               className='price-range'
               style={{ display: 'flex', justifyContent: 'space-between' }}
             >
-              <span>$0</span>
-              <span>$10000.00</span>
+              <span>${priceLow.toLocaleString()}</span>
+              <span>${priceHigh.toLocaleString()}</span>
             </div>
           </AccordionPanel>
         </AccordionItem>
@@ -112,9 +134,11 @@ const Wrapper = styled.div`
     }
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     .amount {
       display: flex;
       justify-content: space-between;
+
       gap: 1rem;
     }
   }

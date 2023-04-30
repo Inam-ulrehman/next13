@@ -41,7 +41,6 @@ const Make = () => {
                 return (
                   <div key={index}>
                     <Checkbox
-                      // defaultChecked={param?.match(item.company)}
                       isChecked={param?.match(item.company) ? true : false}
                       onChange={() => handleSelect(item.company)}
                       size={'lg'}
