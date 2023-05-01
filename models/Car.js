@@ -37,7 +37,7 @@ const CarSchema = new mongoose.Schema(
       type: Number,
       required: [true, 'Please provide year'],
       min: 1,
-      max: 100,
+      max: new Date().getFullYear(),
     },
     price: {
       type: Number,
@@ -46,7 +46,7 @@ const CarSchema = new mongoose.Schema(
       max: 100,
     },
     image: {
-      type: String,
+      type: [],
       required: [true, 'Please provide image'],
     },
 
