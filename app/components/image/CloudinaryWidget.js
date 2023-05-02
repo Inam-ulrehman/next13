@@ -6,8 +6,7 @@ import {
 import { Button } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
-import { useState } from 'react'
-const storageImages = getItemFromLocalStorage('uploadImage')
+import { useEffect, useState } from 'react'
 
 const initialState = {
   uploadImages: [],
@@ -47,7 +46,13 @@ function CloudinaryWidget() {
       console.log(error)
     }
   }
-
+  useEffect(() => {
+    const storageImages = getItemFromLocalStorage('uploadImage')
+    if (!storageImages || null) {
+      return
+    }
+    setState({ ...state, uploadImages: storageImages })
+  }, [])
   return (
     <Wrapper>
       <Button colorScheme='teal' className='file-upload-container'>
