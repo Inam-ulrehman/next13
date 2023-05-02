@@ -9,7 +9,7 @@ import { CldImage } from 'next-cloudinary'
 import { useState } from 'react'
 const storageImages = getItemFromLocalStorage('uploadImage')
 const initialState = {
-  uploadImages: storageImages || [],
+  uploadImages: storageImages,
 }
 function CloudinaryWidget() {
   const [state, setState] = useState(initialState)
