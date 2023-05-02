@@ -57,15 +57,15 @@ function CloudinaryWidget() {
   // handle delete
   const handleDelete = async (public_id) => {
     try {
+      const response = await customFetch.post(`/auth/image/destroy`, {
+        public_id,
+      })
       const newImages = uploadImages.filter((item) => item !== public_id)
       setState({
         ...state,
         uploadImages: newImages,
       })
       setItemInLocalStorage('uploadImage', newImages)
-      const response = await customFetch.post(`/auth/image/destroy`, {
-        public_id,
-      })
     } catch (error) {
       setState({ ...state })
       console.log(error)
