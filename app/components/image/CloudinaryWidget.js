@@ -8,8 +8,9 @@ import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
 import { useState } from 'react'
 const storageImages = getItemFromLocalStorage('uploadImage')
+
 const initialState = {
-  uploadImages: storageImages,
+  uploadImages: storageImages ? storageImages : [],
 }
 function CloudinaryWidget() {
   const [state, setState] = useState(initialState)
