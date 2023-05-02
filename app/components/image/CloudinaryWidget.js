@@ -10,7 +10,7 @@ import { useState } from 'react'
 const storageImages = getItemFromLocalStorage('uploadImage')
 
 const initialState = {
-  uploadImages: storageImages ? storageImages : [],
+  uploadImages: [],
 }
 function CloudinaryWidget() {
   const [state, setState] = useState(initialState)
