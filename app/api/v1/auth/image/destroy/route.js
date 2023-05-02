@@ -36,7 +36,7 @@ export async function POST(request, res) {
       JSON.stringify({
         success: false,
         msg: `Unable to delete.`,
-        result: error.result,
+        result: error,
       }),
       {
         status: StatusCodes.BAD_REQUEST,
