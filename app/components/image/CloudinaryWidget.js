@@ -67,7 +67,6 @@ function CloudinaryWidget() {
       })
       setItemInLocalStorage('uploadImage', newImages)
     } catch (error) {
-      setState({ ...state })
       console.log(error)
     }
   }
