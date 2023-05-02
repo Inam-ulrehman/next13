@@ -16,7 +16,7 @@ export async function POST(request, res) {
   const cookies = request.cookies.getAll()
   await dbConnect()
   const body = await request.json()
-  console.log(body)
+
   const { public_id } = body
 
   try {
