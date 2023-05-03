@@ -140,10 +140,15 @@ const Wrapper = styled.div`
   .container-holder {
     width: fit-content;
     position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    overflow: hidden;
+
     .image {
       background-color: var(--chakra-colors-gray-300);
-      max-width: 100px;
-      max-height: 100px;
+      width: 100px;
+      height: 100px;
       img {
         width: 100%;
         object-fit: cover;
