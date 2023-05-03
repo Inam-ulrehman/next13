@@ -31,31 +31,32 @@ function CloudinaryWidget() {
     formData.append('folder', 'carsell/cars')
     // formData.append('transformation', 'c_pad,h_720,w_720,e_bgremoval')
     setState({ ...state, isLoading: true })
-    try {
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
-        {
-          method: 'POST',
-          body: formData,
-        }
-      )
-      const data = await response.json()
 
-      setState({
-        ...state,
-        uploadImages: [...state.uploadImages, data],
-        isLoading: false,
-      })
-      setItemInLocalStorage('uploadImage', [...state.uploadImages, data])
-    } catch (error) {
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    )
+    const data = await response.json()
+    if (data.error) {
       setState({ ...state, isLoading: false })
       toast({
-        description: 'Unable to upload image on cloudinary.',
+        description: data?.error?.message,
         status: 'error',
         position: 'top-right',
       })
-      console.log(error)
+
+      return
     }
+
+    setState({
+      ...state,
+      uploadImages: [...state.uploadImages, data],
+      isLoading: false,
+    })
+    setItemInLocalStorage('uploadImage', [...state.uploadImages, data])
   }
   // handle delete
   const handleDelete = async (public_id) => {
