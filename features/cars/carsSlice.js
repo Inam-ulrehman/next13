@@ -132,7 +132,7 @@ const carsSlice = createSlice({
       const { name, value } = payload
       if (name === 'make') {
         const result = makes.find((item) => item.company === value)
-        state.selectModel = result.models
+        state.selectModel = result?.models
       }
       state[name] = value
     },
