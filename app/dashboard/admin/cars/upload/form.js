@@ -6,10 +6,6 @@ import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
 
 const Form = () => {
-  const cars = useSelector((state) => state.cars)
-  const { make, model, type, color, year, price, uploadImages, isLoading } =
-    cars
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log('submit')
@@ -23,13 +19,7 @@ const Form = () => {
     <Wrapper>
       <form className='form' onSubmit={handleSubmit}>
         <div className='make'>
-          <input
-            id='make'
-            name='make'
-            type='text'
-            value={make}
-            onChange={handleChange}
-          />
+          <input id='make' name='make' type='text' onChange={handleChange} />
         </div>
         <div className='model'>Model</div>
         <div className='type'>type</div>
