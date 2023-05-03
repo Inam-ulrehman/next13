@@ -10,7 +10,8 @@ export async function POST(request, res) {
   const searchParams = request.nextUrl.searchParams
   const cookies = request.cookies.getAll()
   const body = await request.json()
-  const { make, model, type, color, year, price, image, description } = body
+  const { make, model, type, color, year, price, uploadImages, description } =
+    body
 
   await dbConnect()
   const createdBy = _id
@@ -29,11 +30,11 @@ export async function POST(request, res) {
       color,
       year,
       price,
-      image,
+      uploadImages,
       description,
       createdBy,
     })
-    console.log(cars)
+
     return new Response(
       JSON.stringify({
         success: true,
@@ -42,7 +43,6 @@ export async function POST(request, res) {
       { status: 200 }
     )
   } catch (error) {
-    console.log(error)
     return mongooseErrorHandler(error)
   }
 }

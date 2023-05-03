@@ -138,8 +138,6 @@ function CloudinaryWidget() {
 }
 
 const Wrapper = styled.div`
-  padding: 1rem;
-
   .file-upload-container {
     margin-bottom: 1rem;
     max-width: fit-content;

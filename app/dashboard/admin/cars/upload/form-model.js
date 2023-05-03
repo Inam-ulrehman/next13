@@ -15,23 +15,21 @@ const Model = () => {
   }
   return (
     <div className='model'>
-      <FormControl>
-        <FormLabel>Car Model</FormLabel>
-        <Select
-          onChange={handleChange}
-          id={'model'}
-          name={'model'}
-          placeholder='Select Model'
-        >
-          {selectModel.map((item, index) => {
-            return (
-              <option key={index} value={item}>
-                {titleCase(item)}
-              </option>
-            )
-          })}
-        </Select>
-      </FormControl>
+      <FormLabel>Car Model</FormLabel>
+      <Select
+        onChange={handleChange}
+        id={'model'}
+        name={'model'}
+        placeholder='Select Model'
+      >
+        {selectModel.map((item, index) => {
+          return (
+            <option key={index} value={item}>
+              {titleCase(item)}
+            </option>
+          )
+        })}
+      </Select>
     </div>
   )
 }

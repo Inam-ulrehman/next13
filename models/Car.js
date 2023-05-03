@@ -45,7 +45,7 @@ const CarSchema = new mongoose.Schema(
       min: 1,
       max: 100,
     },
-    image: {
+    uploadImages: {
       type: [],
       required: [true, 'Please provide image'],
     },

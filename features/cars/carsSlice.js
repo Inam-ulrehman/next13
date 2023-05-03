@@ -1,16 +1,20 @@
 import { customFetch } from '@/lib/axios/customFetch'
 import { makes } from '@/lib/data/carMakes'
+import { removeItemFromLocalStorage } from '@/lib/localStorage/localStorage'
+import { useToast } from '@chakra-ui/react'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux'
 
 const initialState = {
   // register
   make: '',
   model: '',
   selectModel: [],
-  type: '',
+  type: 'sedan',
   color: '',
-  year: '',
+  year: '2010-05',
   price: '',
+  description: '',
   uploadImages: [],
 
   // Search
@@ -39,6 +43,20 @@ export const carsThunk = createAsyncThunk(
     try {
       const response = await customFetch.get('/products/static')
 
+      return response.data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data)
+    }
+  }
+)
+//======== Create Car========
+export const createCarsThunk = createAsyncThunk(
+  'cars/createCarsThunk',
+  async (state, thunkAPI) => {
+    try {
+      const response = await customFetch.post('/auth/cars/create', state)
+      thunkAPI.dispatch(clearState())
+      removeItemFromLocalStorage('uploadImage')
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data)
@@ -130,6 +148,7 @@ const carsSlice = createSlice({
     },
     getStateValues: (state, { payload }) => {
       const { name, value } = payload
+
       if (name === 'make') {
         const result = makes.find((item) => item.company === value)
         state.selectModel = result?.models
@@ -137,11 +156,17 @@ const carsSlice = createSlice({
       state[name] = value
     },
     clearState: (state, { payload }) => {
-      // register
+      state.make = ''
+      state.model = ''
+      state.selectModel = []
+      state.type = 'sedan'
+      state.color = ''
+      state.year = '2010-05'
+      state.price = ''
+      state.description = ''
+      state.uploadImages = []
       // search
-      state.searchName = ''
-      state.searchEmail = ''
-      state.searchMobile = ''
+      state.search = ''
       // pagination
       state.page = 1
       state.limit = 10
@@ -173,6 +198,18 @@ const carsSlice = createSlice({
       })
       .addCase(carsThunk.rejected, (state, { payload }) => {
         console.log('promise rejected')
+        console.log(payload)
+        state.isLoading = false
+      })
+      // ==========createCarsThunk===============
+      .addCase(createCarsThunk.pending, (state, { payload }) => {
+        state.isLoading = true
+      })
+      .addCase(createCarsThunk.fulfilled, (state, { payload }) => {
+        state.refreshData = !state.refreshData
+        state.isLoading = false
+      })
+      .addCase(createCarsThunk.rejected, (state, { payload }) => {
         console.log(payload)
         state.isLoading = false
       })

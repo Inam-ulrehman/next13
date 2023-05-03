@@ -15,23 +15,21 @@ const Make = () => {
   }
   return (
     <div className='make'>
-      <FormControl>
-        <FormLabel>Car Make</FormLabel>
-        <Select
-          onChange={handleChange}
-          id={'make'}
-          name={'make'}
-          placeholder='Select Make'
-        >
-          {makes.map((item, index) => {
-            return (
-              <option key={index} value={item.company}>
-                {titleCase(item.company)}
-              </option>
-            )
-          })}
-        </Select>
-      </FormControl>
+      <FormLabel>Car Make</FormLabel>
+      <Select
+        onChange={handleChange}
+        id={'make'}
+        name={'make'}
+        placeholder='Select Make'
+      >
+        {makes.map((item, index) => {
+          return (
+            <option key={index} value={item.company}>
+              {titleCase(item.company)}
+            </option>
+          )
+        })}
+      </Select>
     </div>
   )
 }
