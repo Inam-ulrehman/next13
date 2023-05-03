@@ -1,7 +1,12 @@
 import React from 'react'
+import Form from './form'
 
 const Upload = () => {
-  return <div>Upload</div>
+  return (
+    <div>
+      <Form />
+    </div>
+  )
 }
 
 export default Upload

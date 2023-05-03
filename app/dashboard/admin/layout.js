@@ -20,6 +20,6 @@ const Wrapper = styled.div`
   /* desktop */
   @media (min-width: 920px) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 200px auto;
   }
 `
