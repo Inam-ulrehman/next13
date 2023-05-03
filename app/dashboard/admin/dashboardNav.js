@@ -73,6 +73,7 @@ const Wrapper = styled.div`
   }
   /* desktop */
   @media (min-width: 920px) {
+    min-height: 100vh;
     width: 200px;
     .list {
       position: sticky;
