@@ -1,11 +1,7 @@
 'use client'
-import CloudinaryWidget from '@/app/components/image/CloudinaryWidget'
-import { getStateValues } from '@/features/cars/carsSlice'
-import { bodyType } from '@/lib/data/bodyType'
-import { makes } from '@/lib/data/carMakes'
-import { titleCase } from '@/lib/helper'
+import { createCarsThunk, getStateValues } from '@/features/cars/carsSlice'
 
-import { Button, FormControl, FormLabel, Select } from '@chakra-ui/react'
+import { Button, Center, FormControl, useToast } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { useDispatch, useSelector } from 'react-redux'
 import Type from './form-type'
@@ -13,46 +9,51 @@ import Make from './form-make'
 import Model from './form-model'
 import Color from './form-color'
 import Year from './form-year'
+import Price from './form-price'
+import Image from './form-image'
+import Description from './form-description'
+import { getItemFromLocalStorage } from '@/lib/localStorage/localStorage'
+import { useRouter } from 'next/navigation'
 
 const Form = () => {
+  const router = useRouter()
+  const toast = useToast()
   const cars = useSelector((state) => state.cars)
   const dispatch = useDispatch()
-  const {
-    make,
-    model,
-    type,
-    color,
-    year,
-    price,
-    uploadImages,
-    isLoading,
-    selectModel,
-  } = cars
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('submit')
+    const uploadImages = getItemFromLocalStorage('uploadImage')
+    if (uploadImages?.length === 0 || !uploadImages) {
+      return toast({
+        description: 'Please Upload Image',
+        status: 'info',
+        position: 'top-right',
+      })
+    }
+    const year = cars.year.split('-')[0]
+    const state = { ...cars, uploadImages, year }
+    dispatch(createCarsThunk(state))
   }
 
-  const handleChange = (e) => {
-    const name = e.target.name
-    const value = e.target.value
-    dispatch(getStateValues({ name, value }))
-  }
   return (
     <Wrapper>
       <form className='form' onSubmit={handleSubmit}>
-        <Make />
-        {make.length > 0 && <Model />}
-        <Type />
-        <Color />
-        <Year />
-        <div className='price'>price</div>
-        <CloudinaryWidget />
-        <div className='description'></div>
-        <Button colorScheme='teal' className='button' type='submit'>
-          Submit
-        </Button>
+        <FormControl isRequired>
+          <Make />
+          {cars.make.length > 0 && <Model />}
+          <Type />
+          <Color />
+          <Year />
+          <Price />
+          <Description />
+          <Image />
+        </FormControl>
+        <Center>
+          <Button colorScheme='teal' className='button' type='submit'>
+            Submit
+          </Button>
+        </Center>
       </form>
     </Wrapper>
   )
