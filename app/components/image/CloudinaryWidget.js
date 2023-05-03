@@ -4,7 +4,7 @@ import {
   getItemFromLocalStorage,
   setItemInLocalStorage,
 } from '@/lib/localStorage/localStorage'
-import { Button, useDisclosure } from '@chakra-ui/react'
+import { Button, position, useToast } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
@@ -15,9 +15,10 @@ const initialState = {
   isLoading: false,
 }
 function CloudinaryWidget() {
+  const toast = useToast()
   const [state, setState] = useState(initialState)
   const { isLoading, uploadImages } = state
-  const { isOpen, onToggle } = useDisclosure()
+
   // handle submit
   const handleUpload = async (event) => {
     event.preventDefault()
@@ -42,15 +43,17 @@ function CloudinaryWidget() {
 
       setState({
         ...state,
-        uploadImages: [...state.uploadImages, data.public_id],
+        uploadImages: [...state.uploadImages, data],
         isLoading: false,
       })
-      setItemInLocalStorage('uploadImage', [
-        ...state.uploadImages,
-        data.public_id,
-      ])
+      setItemInLocalStorage('uploadImage', [...state.uploadImages, data])
     } catch (error) {
       setState({ ...state, isLoading: false })
+      toast({
+        description: 'Unable to upload image on cloudinary.',
+        status: 'error',
+        position: 'top-right',
+      })
       console.log(error)
     }
   }
@@ -60,13 +63,20 @@ function CloudinaryWidget() {
       const response = await customFetch.post(`/auth/image/destroy`, {
         public_id,
       })
-      const newImages = uploadImages.filter((item) => item !== public_id)
+      const newImages = uploadImages.filter(
+        (item) => item.public_id !== public_id
+      )
       setState({
         ...state,
         uploadImages: newImages,
       })
       setItemInLocalStorage('uploadImage', newImages)
     } catch (error) {
+      toast({
+        description: 'Unable to delete image server error.',
+        status: 'error',
+        position: 'top-right',
+      })
       console.log(error)
     }
   }
@@ -103,10 +113,15 @@ function CloudinaryWidget() {
             return (
               <motion.div key={index} className='container-holder'>
                 <div className='image'>
-                  <CldImage width={1200} height={1200} src={item} alt='Image' />
+                  <CldImage
+                    width={1200}
+                    height={1200}
+                    src={item.public_id}
+                    alt='Image'
+                  />
                 </div>
                 <Button
-                  onClick={() => handleDelete(item)}
+                  onClick={() => handleDelete(item.public_id)}
                   colorScheme='red'
                   size={'xs'}
                 >
