@@ -1,6 +1,7 @@
 import { getStateValues } from '@/features/cars/carsSlice'
 import { bodyType } from '@/lib/data/bodyType'
 import { titleCase } from '@/lib/helper'
+import { FormLabel } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
 import React from 'react'
@@ -16,35 +17,40 @@ const Type = () => {
 
   return (
     <Wrapper>
-      {bodyType.map((item, index) => {
-        return (
-          <div
-            onClick={() => handleClick(item.name)}
-            className={type === item.name ? 'active container' : 'container'}
-            key={index}
-          >
-            <div className='image'>
-              <CldImage
-                src={item.src}
-                width={750}
-                height={750}
-                alt={item.name}
-              />{' '}
-            </div>{' '}
-            {titleCase(item.name)}
-          </div>
-        )
-      })}
+      <FormLabel>Select Type</FormLabel>
+      <div className='form'>
+        {bodyType.map((item, index) => {
+          return (
+            <div
+              onClick={() => handleClick(item.name)}
+              className={type === item.name ? 'active container' : 'container'}
+              key={index}
+            >
+              <div className='image'>
+                <CldImage
+                  src={item.src}
+                  width={750}
+                  height={750}
+                  alt={item.name}
+                />{' '}
+              </div>{' '}
+              {titleCase(item.name)}
+            </div>
+          )
+        })}
+      </div>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
+  .form {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
 
-  margin-top: 0.5rem;
+    margin-top: 0.5rem;
+  }
   .container {
     display: flex;
     gap: 5px;
@@ -55,7 +61,7 @@ const Wrapper = styled.div`
     :hover {
       cursor: pointer;
 
-      background-color: var(--chakra-colors-gray-100);
+      border: 2px solid var(--chakra-colors-teal-200);
     }
     .image {
       max-width: 40px;
@@ -63,7 +69,7 @@ const Wrapper = styled.div`
     }
   }
   .active {
-    border: 2px solid var(--chakra-colors-red-300);
+    border: 2px solid var(--chakra-colors-teal-200);
   }
 `
 export default Type

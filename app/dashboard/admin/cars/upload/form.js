@@ -8,7 +8,11 @@ import { titleCase } from '@/lib/helper'
 import { Button, FormControl, FormLabel, Select } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { useDispatch, useSelector } from 'react-redux'
-import Type from './bodyType'
+import Type from './form-type'
+import Make from './form-make'
+import Model from './form-model'
+import Color from './form-color'
+import Year from './form-year'
 
 const Form = () => {
   const cars = useSelector((state) => state.cars)
@@ -38,54 +42,11 @@ const Form = () => {
   return (
     <Wrapper>
       <form className='form' onSubmit={handleSubmit}>
-        {/* make */}
-        <div className='make'>
-          <FormControl>
-            <FormLabel>Car Make</FormLabel>
-            <Select
-              onChange={handleChange}
-              id={'make'}
-              name={'make'}
-              placeholder='Select Make'
-            >
-              {makes.map((item, index) => {
-                return (
-                  <option key={index} value={item.company}>
-                    {titleCase(item.company)}
-                  </option>
-                )
-              })}
-            </Select>
-          </FormControl>
-        </div>
-        {/* model */}
-        {make.length > 0 && (
-          <div className='model'>
-            <FormControl>
-              <FormLabel>Car Model</FormLabel>
-              <Select
-                onChange={handleChange}
-                id={'model'}
-                name={'model'}
-                placeholder='Select Model'
-              >
-                {selectModel.map((item, index) => {
-                  return (
-                    <option key={index} value={item}>
-                      {titleCase(item)}
-                    </option>
-                  )
-                })}
-              </Select>
-            </FormControl>
-          </div>
-        )}
-        {/* bodyType */}
-        <div className='type'>
-          <Type />
-        </div>
-        <div className='color'>color</div>
-        <div className='year'>year</div>
+        <Make />
+        {make.length > 0 && <Model />}
+        <Type />
+        <Color />
+        <Year />
         <div className='price'>price</div>
         <CloudinaryWidget />
         <div className='description'></div>
