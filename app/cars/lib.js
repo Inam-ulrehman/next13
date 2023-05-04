@@ -4,6 +4,7 @@ export const filterSort = (searchParams, filter) => {
     .split('&')
     .filter((item) => !item.startsWith(filter))
     .join('&')
+    .replace(/%2C/g, ',')
 
   if (result.length === 0) {
     return ''
