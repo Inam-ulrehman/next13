@@ -6,8 +6,7 @@ import { useEffect } from 'react'
 const List = () => {
   const searchParams = useSearchParams()
   const pathname = usePathname()
-  const sort = searchParams.get('sortField')
-  const sortDirection = searchParams.get('sortDirection')
+  const sort = searchParams.get('sortfield')
   const make = searchParams.getAll('make')
   const type = searchParams.getAll('type')
   const priceLow = searchParams.get('pricelow')
@@ -16,9 +15,10 @@ const List = () => {
   const yearEnd = searchParams.get('yearend')
   const color = searchParams.get('color')
 
-  // console.log(pathname)
-
-  useEffect(() => {}, [pathname, searchParams])
+  useEffect(() => {
+    try {
+    } catch (error) {}
+  }, [pathname, searchParams])
 
   return <div>List</div>
 }

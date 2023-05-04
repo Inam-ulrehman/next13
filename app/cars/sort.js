@@ -17,7 +17,7 @@ import { filterSort } from './lib'
 
 const Sort = () => {
   const searchParams = useSearchParams()
-  const sortField = searchParams.get('sortField')
+  const sortField = searchParams.get('sortfield')
   const pathName = usePathname()
   const router = useRouter()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -26,18 +26,18 @@ const Sort = () => {
   const handleSort = (item) => {
     onClose()
     if (sortField) {
-      const newSearchParams = filterSort(searchParams, 'sortField')
-      router.replace(`${pathName}?sortField=${item.path}${newSearchParams}`)
+      const newSearchParams = filterSort(searchParams, 'sortfield')
+      router.replace(`${pathName}?sortfield=${item.path}${newSearchParams}`)
       return
     }
     const existingSearchParams = searchParams.toString().replace(/%2C/g, ',')
 
     if (existingSearchParams) {
       return router.replace(
-        `${pathName}?sortField=${item.path}&${existingSearchParams}`
+        `${pathName}?sortfield=${item.path}&${existingSearchParams}`
       )
     }
-    router.replace(`${pathName}?sortField=${item.path}`)
+    router.replace(`${pathName}?sortfield=${item.path}`)
   }
   return (
     <Wrapper>
