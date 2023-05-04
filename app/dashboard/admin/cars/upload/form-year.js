@@ -26,8 +26,10 @@ const Year = () => {
   )
 }
 const Wrapper = styled.div`
-  input {
-    max-width: 230px;
+  @media (min-width: 768px) {
+    /* input {
+      max-width: 230px;
+    } */
   }
 `
 export default Year

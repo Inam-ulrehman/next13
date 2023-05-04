@@ -8,9 +8,10 @@ import {
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Description = () => {
+  const { description } = useSelector((state) => state.cars)
   const dispatch = useDispatch()
 
   const handleChange = (e) => {
@@ -27,6 +28,7 @@ const Description = () => {
         id='description'
         onChange={handleChange}
         placeholder='Enter Description'
+        value={description}
       />
     </Wrapper>
   )

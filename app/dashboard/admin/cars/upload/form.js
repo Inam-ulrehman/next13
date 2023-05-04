@@ -41,7 +41,7 @@ const Form = () => {
       <form className='form' onSubmit={handleSubmit}>
         <FormControl isRequired>
           <Make />
-          {cars.make.length > 0 && <Model />}
+          <Model />
           <Type />
           <Color />
           <Year />

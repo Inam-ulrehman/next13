@@ -21,8 +21,9 @@ const Model = () => {
         id={'model'}
         name={'model'}
         placeholder='Select Model'
+        isDisabled={selectModel?.length > 0 ? false : true}
       >
-        {selectModel.map((item, index) => {
+        {selectModel?.map((item, index) => {
           return (
             <option key={index} value={item}>
               {titleCase(item)}

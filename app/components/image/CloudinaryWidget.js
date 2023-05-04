@@ -2,6 +2,7 @@
 import { customFetch } from '@/lib/axios/customFetch'
 import {
   getItemFromLocalStorage,
+  removeItemFromLocalStorage,
   setItemInLocalStorage,
 } from '@/lib/localStorage/localStorage'
 import { Button, position, useToast } from '@chakra-ui/react'
@@ -9,12 +10,14 @@ import { motion } from 'framer-motion'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 const initialState = {
   uploadImages: [],
   isLoading: false,
 }
 function CloudinaryWidget() {
+  const { refreshData } = useSelector((state) => state.cars)
   const toast = useToast()
   const [state, setState] = useState(initialState)
   const { isLoading, uploadImages } = state
@@ -60,18 +63,18 @@ function CloudinaryWidget() {
   }
   // handle delete
   const handleDelete = async (public_id) => {
+    const newImages = uploadImages.filter(
+      (item) => item.public_id !== public_id
+    )
+    setState({
+      ...state,
+      uploadImages: newImages,
+    })
+    setItemInLocalStorage('uploadImage', newImages)
     try {
       const response = await customFetch.post(`/auth/image/destroy`, {
         public_id,
       })
-      const newImages = uploadImages.filter(
-        (item) => item.public_id !== public_id
-      )
-      setState({
-        ...state,
-        uploadImages: newImages,
-      })
-      setItemInLocalStorage('uploadImage', newImages)
     } catch (error) {
       toast({
         description: 'Unable to delete image server error.',
@@ -89,6 +92,10 @@ function CloudinaryWidget() {
     }
     setState({ ...state, uploadImages: storageImages })
   }, [])
+  useEffect(() => {
+    setState({ ...state, uploadImages: [] })
+    removeItemFromLocalStorage('uploadImage')
+  }, [refreshData])
   return (
     <Wrapper>
       <Button

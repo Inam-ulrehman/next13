@@ -14,7 +14,10 @@ export function Providers({ children }) {
     <>
       <CacheProvider>
         <Provider store={store}>
-          <ChakraProvider theme={theme}>
+          <ChakraProvider
+            theme={theme}
+            toastOptions={{ defaultOptions: { position: 'top-right' } }}
+          >
             {children}
             <ToastContainer />
           </ChakraProvider>

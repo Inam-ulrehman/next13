@@ -7,9 +7,10 @@ import {
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Price = () => {
+  const { price } = useSelector((state) => state.cars)
   const dispatch = useDispatch()
 
   const handleChange = (e) => {
@@ -34,6 +35,7 @@ const Price = () => {
           type='number'
           onChange={handleChange}
           placeholder='Enter amount'
+          value={price}
         />
       </InputGroup>
     </Wrapper>

@@ -1,7 +1,8 @@
 import { customFetch } from '@/lib/axios/customFetch'
 import { makes } from '@/lib/data/carMakes'
-import { removeItemFromLocalStorage } from '@/lib/localStorage/localStorage'
-import { useToast } from '@chakra-ui/react'
+import { createStandaloneToast } from '@chakra-ui/react'
+
+const { toast } = createStandaloneToast()
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 
@@ -56,7 +57,6 @@ export const createCarsThunk = createAsyncThunk(
     try {
       const response = await customFetch.post('/auth/cars/create', state)
       thunkAPI.dispatch(clearState())
-      removeItemFromLocalStorage('uploadImage')
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data)
@@ -208,9 +208,18 @@ const carsSlice = createSlice({
       .addCase(createCarsThunk.fulfilled, (state, { payload }) => {
         state.refreshData = !state.refreshData
         state.isLoading = false
+        toast({
+          description: payload.msg,
+          status: 'success',
+          position: 'top-right',
+        })
       })
       .addCase(createCarsThunk.rejected, (state, { payload }) => {
-        console.log(payload)
+        toast({
+          title: 'An error occurred.',
+          description: payload.msg,
+          status: 'success',
+        })
         state.isLoading = false
       })
       // ==========allCarsThunk===============
