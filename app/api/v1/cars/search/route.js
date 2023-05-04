@@ -21,6 +21,7 @@ export async function GET(request, res) {
   const sortField = searchParams.get('sortField')?.split(',')
 
   let query = []
+  // empty
 
   if (make) {
     query = [...query, { make: make }]
