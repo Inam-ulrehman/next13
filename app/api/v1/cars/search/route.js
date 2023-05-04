@@ -14,13 +14,15 @@ export async function GET(request, res) {
   const model = searchParams.get('model')?.split(',')
   const type = searchParams.get('type')?.split(',')
   const color = searchParams.get('color')?.split(',')
-  const yearStart = searchParams.get('yearStart')?.split(',')
-  const yearEnd = searchParams.get('yearEnd')?.split(',')
-  const priceLow = searchParams.get('priceLow')?.split(',')
-  const priceHigh = searchParams.get('priceHigh')?.split(',')
-  const sortField = searchParams.get('sortField')?.split(',')
+  const yearStart = searchParams.get('yearStart')
+  const yearEnd = searchParams.get('yearEnd')
+  const priceLow = searchParams.get('priceLow')
+  const priceHigh = searchParams.get('priceHigh')
+  const sortField = searchParams.get('sortField')
 
   let query = []
+  let sort = {}
+
   // empty solution
 
   if (make) {
@@ -30,29 +32,54 @@ export async function GET(request, res) {
     query = [...query, { model: model }]
   }
   if (type) {
-    query = [...query, { model: model }]
+    query = [...query, { type: type }]
   }
   if (color) {
-    query = [...query, { model: model }]
+    query = [...query, { color: color }]
   }
+  // add year and price in search
+  let search = {
+    $or: query,
+  }
+  if (!make && !model && !type && !color) {
+    search = {}
+  }
+  let year = {}
+  let price = {}
+
   if (yearStart) {
+    search = { ...search, year: { ...year, $gte: yearStart } }
   }
   if (yearEnd) {
+    search = { ...search, year: { ...year, $lte: yearEnd } }
+  }
+  if (yearStart && yearEnd) {
+    search = { ...search, year: { $gte: yearStart, $lte: yearEnd } }
   }
   if (priceLow) {
+    search = { ...search, price: { ...price, $gte: priceLow } }
   }
   if (priceHigh) {
+    search = { ...search, price: { ...price, $lte: priceHigh } }
   }
-  if (sortField) {
+  if (priceLow && priceHigh) {
+    search = { ...search, price: { $gte: priceLow, $lte: priceHigh } }
   }
-  const car = await Car.find({
-    $or: query,
-  })
-  console.log(car.length)
-  return new Response(
-    JSON.stringify(
-      { status: false, msg: 'Search Result' },
-      { status: StatusCodes.OK }
+
+  try {
+    const result = await Car.find(search).sort(sortField)
+    return new Response(
+      JSON.stringify(
+        {
+          status: false,
+          msg: 'Search Result',
+          nbHits: result.length,
+          result,
+        },
+        { status: StatusCodes.OK }
+      )
     )
-  )
+  } catch (error) {
+    mongooseErrorHandler(error)
+  }
 }

@@ -42,8 +42,6 @@ const CarSchema = new mongoose.Schema(
     price: {
       type: Number,
       required: [true, 'Please provide price'],
-      min: 1,
-      max: 100,
     },
     uploadImages: {
       type: [],
