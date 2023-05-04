@@ -23,30 +23,27 @@ export async function GET(request, res) {
   let query = []
   let sort = {}
 
-  // empty solution
-
   if (make) {
     query = [...query, { make: make }]
   }
-  if (model) {
-    query = [...query, { model: model }]
-  }
-  if (type) {
-    query = [...query, { type: type }]
-  }
-  if (color) {
-    query = [...query, { color: color }]
-  }
-  // add year and price in search
+
   let search = {
     $or: query,
   }
-  if (!make && !model && !type && !color) {
+  if (!make) {
     search = {}
   }
   let year = {}
   let price = {}
-
+  if (model) {
+    search = { ...search, model }
+  }
+  if (type) {
+    search = { ...search, type: type }
+  }
+  if (color) {
+    search = { ...search, color: color }
+  }
   if (yearStart) {
     search = { ...search, year: { ...year, $gte: yearStart } }
   }
@@ -71,7 +68,7 @@ export async function GET(request, res) {
     return new Response(
       JSON.stringify(
         {
-          status: false,
+          status: true,
           msg: 'Search Result',
           nbHits: result.length,
           result,
