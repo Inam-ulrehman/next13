@@ -9,6 +9,7 @@ import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Pagination from './pagination'
 import Loading from './loading'
+import EmptyResult from './emptyResult'
 
 const initialState = {
   list: [],
@@ -44,6 +45,13 @@ const List = () => {
   useEffect(() => {
     fetchData()
   }, [pathname, searchParams])
+  if (state.nbHits === 0) {
+    return (
+      <div>
+        <EmptyResult />
+      </div>
+    )
+  }
   if (state.list.length === 0) {
     return <Loading />
   }
