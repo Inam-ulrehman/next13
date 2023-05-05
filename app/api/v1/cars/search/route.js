@@ -10,6 +10,7 @@ export async function GET(request, res) {
   await dbConnect()
 
   // color=silver,grey&yearStart=2005&yearEnd=2016&priceLow=22000&priceHigh=68000&type=suv,sedan&make=acura,audi&sortfield=priceHigh
+
   const make = searchParams.get('make')?.split(',')
   const model = searchParams.get('model')?.split(',')
   const type = searchParams.get('type')?.split(',')
@@ -63,14 +64,21 @@ export async function GET(request, res) {
     search = { ...search, price: { $gte: priceLow, $lte: priceHigh } }
   }
 
+  const page = Number(searchParams.get('page')) || 1
+  const limit = Number(searchParams.get('limit')) || 10
+  const skip = (page - 1) * limit
+  const nbHits = await Car.find(search)
   try {
-    const result = await Car.find(search).sort(sortField)
+    const result = await Car.find(search)
+      .sort(sortField)
+      .skip(skip)
+      .limit(limit)
     return new Response(
       JSON.stringify(
         {
           status: true,
           msg: 'Search Result',
-          nbHits: result.length,
+          nbHits: nbHits.length,
           result,
         },
         { status: StatusCodes.OK }
