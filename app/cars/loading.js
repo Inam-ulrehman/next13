@@ -38,7 +38,7 @@ const Wrapper = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
 
     .skeleton {
-      width: 30vw;
+      width: 35vw;
     }
   }
 `
