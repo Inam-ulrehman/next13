@@ -45,10 +45,10 @@ const List = () => {
   useEffect(() => {
     fetchData()
   }, [pathname, searchParams])
-
-  // if (state.isLoading) {
-  //   return <Loading />
-  // }
+  console.log(state.list.length)
+  if (state.list.length === 0) {
+    return <Loading />
+  }
 
   return (
     <Wrapper>
