@@ -9,6 +9,7 @@ import { CldImage } from 'next-cloudinary'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Pagination from './pagination'
+import Loading from './loading'
 
 const initialState = {
   list: [],
@@ -46,7 +47,7 @@ const List = () => {
   }, [pathname, searchParams])
 
   if (state.isLoading) {
-    return <div>Loading</div>
+    return <Loading />
   }
   if (state.list.length === 0) {
     return <div>No item found</div>
