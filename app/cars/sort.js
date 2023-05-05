@@ -30,7 +30,13 @@ const Sort = () => {
       router.replace(`${pathName}?sortfield=${item.path}${newSearchParams}`)
       return
     }
+    const existingSearchParams = searchParams.toString().replace(/%2C/g, ',')
 
+    if (existingSearchParams) {
+      return router.replace(
+        `${pathName}?sortfield=${item.path}&${existingSearchParams}`
+      )
+    }
     router.replace(`${pathName}?sortfield=${item.path}`)
   }
   return (

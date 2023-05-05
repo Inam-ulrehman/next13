@@ -28,7 +28,13 @@ export const filterMakeParams = (
   const otherQuery = searchParams
     .toString()
     .split('&')
-    .filter((item) => !item.startsWith(searchWord))
+    .filter(
+      (item) =>
+        !item.startsWith(searchWord) &&
+        !item.startsWith('page') &&
+        !item.startsWith('limit') &&
+        !item.startsWith('sortfield')
+    )
     .join('&')
     .replace(/%2C/g, ',')
 
