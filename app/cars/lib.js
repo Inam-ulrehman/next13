@@ -2,7 +2,12 @@ export const filterSort = (searchParams, filter) => {
   const result = searchParams
     .toString()
     .split('&')
-    .filter((item) => !item.startsWith(filter))
+    .filter(
+      (item) =>
+        !item.startsWith(filter) &&
+        !item.startsWith('page') &&
+        !item.startsWith('limit')
+    )
     .join('&')
     .replace(/%2C/g, ',')
 
