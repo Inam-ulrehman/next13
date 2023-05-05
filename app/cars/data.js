@@ -3,8 +3,8 @@ export const sortData = [
   { name: 'Newest', path: '-createdAt' },
   { name: 'Least Expensive', path: 'price' },
   { name: 'Most Expensive', path: '-price' },
-  { name: 'Highest Mileage', path: '-mileage' },
-  { name: 'Lowest Mileage', path: 'mileage' },
+  { name: 'Highest Mileage', path: '-km' },
+  { name: 'Lowest Mileage', path: 'km' },
 ]
 
 export const colors = [
