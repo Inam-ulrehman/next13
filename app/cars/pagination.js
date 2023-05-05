@@ -63,48 +63,48 @@ const Pagination = ({ nbHits }) => {
 
   return (
     <Wrapper>
-      <Button size={'sm'} onClick={handlePrev}>
-        <GrFormPrevious size={30} />
-      </Button>
-      {/* Page Pagination */}
-      {page > 1 && (
-        <>
-          <Button size={'sm'} onClick={() => handleIndex(0)} value={1}>
-            First
-          </Button>
-        </>
-      )}
+      <ButtonGroup isAttached>
+        <Button size={'sm'} onClick={handlePrev}>
+          <GrFormPrevious size={30} />
+        </Button>
+        {/* Page Pagination */}
+        {page > 1 && (
+          <>
+            <Button size={'sm'} onClick={() => handleIndex(0)} value={1}>
+              First
+            </Button>
+          </>
+        )}
 
-      {pagesArray
-        .map((item, index) => {
-          return (
-            <ButtonGroup isAttached>
+        {pagesArray
+          .map((item, index) => {
+            return (
               <Button
-                size={'sm'}
                 key={index}
+                size={'sm'}
                 className={Number(page) === index + 1 ? ` active` : ''}
                 type='button'
                 onClick={() => handleIndex(index)}
               >
                 {item}
               </Button>
-            </ButtonGroup>
-          )
-        })
-        .slice(page - 1, page + 4)}
-      {page !== pagesArray.length && (
-        <>
-          <Button
-            size={'sm'}
-            onClick={() => handleIndex(pagesArray.length - 1)}
-          >
-            Last
-          </Button>
-        </>
-      )}
-      <Button size={'sm'} onClick={handleNext}>
-        <GrFormNext size={30} />
-      </Button>
+            )
+          })
+          .slice(page - 1, page + 4)}
+        {page !== pagesArray.length && (
+          <>
+            <Button
+              size={'sm'}
+              onClick={() => handleIndex(pagesArray.length - 1)}
+            >
+              Last
+            </Button>
+          </>
+        )}
+        <Button size={'sm'} onClick={handleNext}>
+          <GrFormNext size={30} />
+        </Button>
+      </ButtonGroup>
     </Wrapper>
   )
 }
