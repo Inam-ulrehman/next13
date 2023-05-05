@@ -1,6 +1,5 @@
 'use client'
 
-import PaginationHook from '@/hooks/paginationHook'
 import { customFetch } from '@/lib/axios/customFetch'
 import { titleCase } from '@/lib/helper'
 import { Skeleton, Text } from '@chakra-ui/react'
@@ -45,7 +44,6 @@ const List = () => {
   useEffect(() => {
     fetchData()
   }, [pathname, searchParams])
-  console.log(state.list.length)
   if (state.list.length === 0) {
     return <Loading />
   }

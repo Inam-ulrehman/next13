@@ -4,12 +4,12 @@ import styled from '@emotion/styled'
 import React from 'react'
 
 const Loading = () => {
-  let state = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0]
+  let state = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   return (
     <Wrapper>
       {state.map((item, index) => {
         return (
-          <div key={'index'} className='skeleton'>
+          <div key={index} className='skeleton'>
             <Skeleton height={'inherit'}></Skeleton>
           </div>
         )
