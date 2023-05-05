@@ -74,7 +74,7 @@ const List = () => {
               </div>
               <div className='footer'>
                 <Text as={'span'}>${item.price.toLocaleString()}</Text>
-                <Text as={'span'}>Km {item?.km?.toLocaleString()}</Text>
+                <Text as={'span'}>{item?.km?.toLocaleString()} km</Text>
               </div>
             </div>
           )
@@ -88,7 +88,7 @@ const List = () => {
 const Wrapper = styled.div`
   .main-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
     max-width: 95vw;
     margin: 0 auto;
     gap: 0.7rem;
@@ -98,7 +98,8 @@ const Wrapper = styled.div`
   .image {
     padding: 1rem;
     border: 2px solid var(--chakra-colors-gray-100);
-    max-width: 45vw;
+    max-width: 95vw;
+    margin: 0 auto;
     border-radius: 10px;
   }
   .body {
@@ -112,6 +113,15 @@ const Wrapper = styled.div`
     color: var(--chakra-colors-gray-500);
     span {
       margin-right: 1rem;
+    }
+  }
+
+  @media (min-width: 480px) {
+    .main-container {
+      grid-template-columns: 1fr 1fr;
+    }
+    .image {
+      max-width: 47vw;
     }
   }
   @media (min-width: 768px) {
