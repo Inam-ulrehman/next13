@@ -14,6 +14,7 @@ import Image from './form-image'
 import Description from './form-description'
 import { getItemFromLocalStorage } from '@/lib/localStorage/localStorage'
 import { useRouter } from 'next/navigation'
+import Km from './form-km'
 
 const Form = () => {
   const router = useRouter()
@@ -46,6 +47,7 @@ const Form = () => {
           <Color />
           <Year />
           <Price />
+          <Km />
           <Description />
           <Image />
         </FormControl>

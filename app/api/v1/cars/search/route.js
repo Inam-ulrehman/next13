@@ -18,7 +18,7 @@ export async function GET(request, res) {
   const yearEnd = searchParams.get('yearEnd')
   const priceLow = searchParams.get('priceLow')
   const priceHigh = searchParams.get('priceHigh')
-  const sortField = searchParams.get('sortField')
+  const sortField = searchParams.get('sortfield')
 
   let query = []
   let sort = {}

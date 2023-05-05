@@ -1,6 +1,8 @@
 'use client'
 
 import { customFetch } from '@/lib/axios/customFetch'
+import { formatPrice, titleCase } from '@/lib/helper'
+import { Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
 import { usePathname, useSearchParams } from 'next/navigation'
@@ -42,7 +44,6 @@ const List = () => {
   return (
     <Wrapper>
       {state.list.map((item, index) => {
-        console.log(item.uploadImages[0].public_id)
         return (
           <div key={index} className='container'>
             <div className='image'>
@@ -53,7 +54,17 @@ const List = () => {
                 height={750}
               />
             </div>
-            <div className='body'></div>
+            <div className='body'>
+              <Text noOfLines={1} fontSize={'lg'} fontWeight={'medium'}>
+                <span>{item.year}</span>
+                <span>{titleCase(item.make)}</span>
+                <span>{titleCase(item.model)}</span>
+              </Text>
+            </div>
+            <div className='footer'>
+              <Text as={'span'}>{formatPrice(`${item.price}00`)}</Text>
+              <Text as={'span'}>Km, 25,000</Text>
+            </div>
           </div>
         )
       })}
@@ -61,5 +72,38 @@ const List = () => {
   )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 95vw;
+  margin: 0 auto;
+  gap: 0.7rem;
+  .container {
+  }
+  .image {
+    padding: 1rem;
+    border: 2px solid var(--chakra-colors-gray-100);
+    max-width: 45vw;
+    border-radius: 10px;
+  }
+  .body {
+    p {
+      display: flex;
+      gap: 0.3rem;
+    }
+  }
+  .footer {
+    display: flex;
+    color: var(--chakra-colors-gray-500);
+    span {
+      margin-right: 1rem;
+    }
+  }
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    .image {
+      max-width: 35vw;
+    }
+  }
+`
 export default List

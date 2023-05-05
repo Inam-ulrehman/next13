@@ -1,5 +1,5 @@
 import { getStateValues } from '@/features/cars/carsSlice'
-
+import { AiOutlineCar } from 'react-icons/ai'
 import {
   FormLabel,
   Input,
@@ -10,8 +10,8 @@ import styled from '@emotion/styled'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-const Price = () => {
-  const { price } = useSelector((state) => state.cars)
+const Km = () => {
+  const { km } = useSelector((state) => state.cars)
   const dispatch = useDispatch()
 
   const handleChange = (e) => {
@@ -21,22 +21,22 @@ const Price = () => {
   }
   return (
     <Wrapper>
-      <FormLabel>Price</FormLabel>
+      <FormLabel>Mileage</FormLabel>
       <InputGroup>
         <InputLeftElement
           pointerEvents='none'
           color='gray.300'
           fontSize='1.2em'
         >
-          $
+          <AiOutlineCar />
         </InputLeftElement>
         <Input
-          name='price'
-          id='price'
+          name='km'
+          id='km'
           type='number'
           onChange={handleChange}
-          placeholder='Enter Amount'
-          value={price}
+          placeholder='Enter Km'
+          value={km}
         />
       </InputGroup>
     </Wrapper>
@@ -44,4 +44,4 @@ const Price = () => {
 }
 
 const Wrapper = styled.div``
-export default Price
+export default Km

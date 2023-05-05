@@ -43,6 +43,9 @@ const CarSchema = new mongoose.Schema(
       type: Number,
       required: [true, 'Please provide price'],
     },
+    km: {
+      type: Number,
+    },
     uploadImages: {
       type: [],
       required: [true, 'Please provide image'],
@@ -51,7 +54,6 @@ const CarSchema = new mongoose.Schema(
     description: {
       type: String,
       required: [true, 'Please provide description'],
-      maxLength: 100,
     },
 
     createdBy: {

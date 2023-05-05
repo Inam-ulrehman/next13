@@ -10,8 +10,17 @@ export async function POST(request, res) {
   const searchParams = request.nextUrl.searchParams
   const cookies = request.cookies.getAll()
   const body = await request.json()
-  const { make, model, type, color, year, price, uploadImages, description } =
-    body
+  const {
+    make,
+    model,
+    type,
+    color,
+    year,
+    price,
+    km,
+    uploadImages,
+    description,
+  } = body
 
   await dbConnect()
   const createdBy = _id
@@ -29,6 +38,7 @@ export async function POST(request, res) {
       type,
       color,
       year,
+      km,
       price,
       uploadImages,
       description,

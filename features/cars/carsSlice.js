@@ -4,7 +4,6 @@ import { createStandaloneToast } from '@chakra-ui/react'
 
 const { toast } = createStandaloneToast()
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { useDispatch } from 'react-redux'
 
 const initialState = {
   // register
@@ -12,9 +11,10 @@ const initialState = {
   model: '',
   selectModel: [],
   type: 'sedan',
-  color: '',
+  color: 'white',
   year: '2010-05',
   price: '',
+  km: '',
   description: '',
   uploadImages: [],
 
@@ -163,6 +163,7 @@ const carsSlice = createSlice({
       state.color = ''
       state.year = '2010-05'
       state.price = ''
+      state.km = ''
       state.description = ''
       state.uploadImages = []
       // search
