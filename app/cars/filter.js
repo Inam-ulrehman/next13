@@ -56,7 +56,7 @@ const Filter = () => {
               <Link color={'teal.500'} href={'/cars'} fontWeight={'bold'}>
                 Clear all Filters
               </Link>
-              <Button colorScheme='teal' size={'lg'}>
+              <Button onClick={onClose} colorScheme='teal' size={'lg'}>
                 Show results
               </Button>
             </DrawerFooter>
