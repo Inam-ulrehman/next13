@@ -15,7 +15,7 @@ const Pagination = ({ nbHits }) => {
     .replace(/%2C/g, ',')
 
   const router = useRouter()
-  const limit = Number(searchParams.get('limit')) || 10
+  const limit = Number(searchParams.get('limit')) || 12
   const page = Number(searchParams.get('page')) || 1
 
   const totalPages = Math.ceil(nbHits / limit)
