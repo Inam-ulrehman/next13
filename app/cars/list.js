@@ -3,7 +3,7 @@
 import PaginationHook from '@/hooks/paginationHook'
 import { customFetch } from '@/lib/axios/customFetch'
 import { titleCase } from '@/lib/helper'
-import { Text } from '@chakra-ui/react'
+import { Skeleton, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
 import { usePathname, useSearchParams } from 'next/navigation'
@@ -46,12 +46,10 @@ const List = () => {
     fetchData()
   }, [pathname, searchParams])
 
-  if (state.isLoading) {
-    return <Loading />
-  }
-  if (state.list.length === 0) {
-    return <div>No item found</div>
-  }
+  // if (state.isLoading) {
+  //   return <Loading />
+  // }
+
   return (
     <Wrapper>
       <div className='main-container'>
@@ -59,23 +57,41 @@ const List = () => {
           return (
             <div key={index} className='container'>
               <div className='image'>
-                <CldImage
-                  src={item.uploadImages[0].public_id}
-                  alt={item.make}
-                  width={750}
-                  height={750}
-                />
+                <Skeleton
+                  height='inherit'
+                  isLoaded={!state.isLoading}
+                  fadeDuration={1}
+                >
+                  <CldImage
+                    src={item.uploadImages[0].public_id}
+                    alt={item.make}
+                    width={750}
+                    height={750}
+                  />
+                </Skeleton>
               </div>
               <div className='body'>
-                <Text noOfLines={1} fontSize={'lg'} fontWeight={'medium'}>
-                  <span>{item.year}</span>
-                  <span>{titleCase(item.make)}</span>
-                  <span>{item.model}</span>
-                </Text>
+                <Skeleton
+                  height='inherit'
+                  isLoaded={!state.isLoading}
+                  fadeDuration={1}
+                >
+                  <Text noOfLines={1} fontSize={'lg'} fontWeight={'medium'}>
+                    <span>{item.year}</span>
+                    <span>{titleCase(item.make)}</span>
+                    <span>{item.model}</span>
+                  </Text>
+                </Skeleton>
               </div>
               <div className='footer'>
-                <Text as={'span'}>${item.price.toLocaleString()}</Text>
-                <Text as={'span'}>{item?.km?.toLocaleString()} km</Text>
+                <Skeleton
+                  height='inherit'
+                  isLoaded={!state.isLoading}
+                  fadeDuration={1}
+                >
+                  <Text as={'span'}>${item.price.toLocaleString()}</Text>
+                  <Text as={'span'}>{item?.km?.toLocaleString()} km</Text>
+                </Skeleton>
               </div>
             </div>
           )

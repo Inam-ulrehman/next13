@@ -28,7 +28,7 @@ const Pagination = ({ nbHits }) => {
     if (pagesArray.length <= page) {
       return
     }
-
+    ScrollHook()
     if (existingSearch) {
       return router.push(`/cars?page=${nextPage}&${existingSearch}`)
     }
@@ -38,6 +38,7 @@ const Pagination = ({ nbHits }) => {
 
   const handleIndex = (page) => {
     const currentPage = page + 1
+    ScrollHook()
     if (existingSearch) {
       return router.push(`/cars?page=${currentPage}&${existingSearch}`)
     }
@@ -49,6 +50,7 @@ const Pagination = ({ nbHits }) => {
     if (page <= 1) {
       return
     }
+    ScrollHook()
     if (existingSearch) {
       return router.push(`/cars?page=${prevPage}&${existingSearch}`)
     }
