@@ -58,12 +58,12 @@ const List = () => {
               <Text noOfLines={1} fontSize={'lg'} fontWeight={'medium'}>
                 <span>{item.year}</span>
                 <span>{titleCase(item.make)}</span>
-                <span>{titleCase(item.model)}</span>
+                <span>{item.model}</span>
               </Text>
             </div>
             <div className='footer'>
-              <Text as={'span'}>{formatPrice(`${item.price}00`)}</Text>
-              <Text as={'span'}>Km, 25,000</Text>
+              <Text as={'span'}>${item.price.toLocaleString()}</Text>
+              <Text as={'span'}>Km {item?.km?.toLocaleString()}</Text>
             </div>
           </div>
         )
