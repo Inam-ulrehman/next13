@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import { MdElectricBolt } from 'react-icons/md'
+import { searchWords } from './data'
 const initialState = {
   make: '',
   models: [],
@@ -119,28 +120,29 @@ const SearchBox = () => {
             Most Popular Cars in Canada:
           </Heading>
           <div className='buttons-list'>
-            <Button size={'xs'} leftIcon={<BsSearch />}>
-              Honda Civic
-            </Button>
-            <Button size={'xs'} leftIcon={<BsSearch />}>
-              Ford Mustang
-            </Button>
-            <Button size={'xs'} leftIcon={<BsSearch />}>
-              Ford F-150
-            </Button>
-            <Button size={'xs'} leftIcon={<BsSearch />}>
-              Honda C-RV
-            </Button>
-            <Button size={'xs'} leftIcon={<BsSearch />}>
-              Toyota Rav4
-            </Button>
+            {searchWords.map((item, index) => {
+              return (
+                <Button
+                  key={index}
+                  onClick={() => router.push(item.search)}
+                  size={'xs'}
+                  leftIcon={<BsSearch />}
+                >
+                  {item.name}
+                </Button>
+              )
+            })}
           </div>
         </div>
         <div className='offer-button'>
           <Heading color={'whiteAlpha.900'} size={'sm'}>
             Sell your car?
           </Heading>
-          <Button leftIcon={<MdElectricBolt />} size={'sm'}>
+          <Button
+            onClick={() => router.push('/contact')}
+            leftIcon={<MdElectricBolt />}
+            size={'sm'}
+          >
             Get your offer now
           </Button>
         </div>
