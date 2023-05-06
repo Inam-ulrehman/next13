@@ -1,19 +1,58 @@
-import {
-  Button,
-  ButtonGroup,
-  Heading,
-  Select,
-  background,
-  useColorMode,
-} from '@chakra-ui/react'
+import { colors } from '@/app/cars/data'
+import { makes } from '@/lib/data/carMakes'
+import { titleCase } from '@/lib/helper'
+import { Button, Heading, Select, useColorMode } from '@chakra-ui/react'
 import styled from '@emotion/styled'
-import React from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useState } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import { MdElectricBolt } from 'react-icons/md'
-
+const initialState = {
+  make: '',
+  models: [],
+  model: '',
+  colors: colors,
+  color: '',
+  search: [],
+}
 const SearchBox = () => {
+  const [state, setState] = useState(initialState)
+  const router = useRouter()
   const { colorMode } = useColorMode()
 
+  const handleMake = (e) => {
+    const make = e.target.value
+    if (!make) {
+      return setState({ ...state, make: '', model: '', color: '' })
+    }
+    const filter = makes.find((item) => item.company === make)
+    const models = filter.models
+    setState({ ...state, make, models })
+  }
+  const handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value.toLowerCase()
+    setState({ ...state, [name]: value })
+  }
+
+  const handleShowCars = () => {
+    const { make, model, color } = state
+    let search = ''
+    if (make) {
+      search += `&make=${make}`
+    }
+    if (model) {
+      search += `&model=${model}`
+    }
+    if (color) {
+      search += `&color=${color}`
+    }
+
+    if (!search) {
+      return router.push(`/cars`)
+    }
+    router.push(`/cars?${search}`)
+  }
   return (
     <Wrapper>
       <Heading size={'md'} color={'whiteAlpha.900'}>
@@ -21,31 +60,54 @@ const SearchBox = () => {
       </Heading>
       <div className='search'>
         <Select
+          onChange={handleMake}
+          id='make'
+          name='make'
           bg={colorMode === 'light' ? 'whiteAlpha.900' : ''}
-          placeholder='Select option'
+          placeholder='Select car'
         >
-          <option value='option1'>Option 1</option>
-          <option value='option2'>Option 2</option>
-          <option value='option3'>Option 3</option>
+          {makes.map((item, index) => {
+            return (
+              <option key={index} value={item.company}>
+                {titleCase(item.company)}
+              </option>
+            )
+          })}
         </Select>
         <Select
+          onChange={handleChange}
+          id='model'
+          name='model'
           bg={colorMode === 'light' ? 'whiteAlpha.900' : ''}
-          placeholder='Select option'
+          placeholder='Select model'
+          isDisabled={state.make.length === 0}
         >
-          <option value='option1'>Option 1</option>
-          <option value='option2'>Option 2</option>
-          <option value='option3'>Option 3</option>
+          {state.models?.map((item, index) => {
+            return (
+              <option key={index} value={item}>
+                {titleCase(item)}
+              </option>
+            )
+          })}
         </Select>
         <Select
+          onChange={handleChange}
+          id='color'
+          name='color'
           bg={colorMode === 'light' ? 'whiteAlpha.900' : ''}
-          placeholder='Select option'
+          placeholder='Select color optional'
+          isDisabled={state.make.length === 0}
         >
-          <option value='option1'>Option 1</option>
-          <option value='option2'>Option 2</option>
-          <option value='option3'>Option 3</option>
+          {state.colors.map((item, index) => {
+            return (
+              <option key={index} value={item.color}>
+                {item.color}
+              </option>
+            )
+          })}
         </Select>
         <div className='button-cars'>
-          <Button colorScheme='blue' pl={'8'} pr={'8'}>
+          <Button onClick={handleShowCars} colorScheme='blue' pl={'8'} pr={'8'}>
             Show me cars
           </Button>
         </div>
