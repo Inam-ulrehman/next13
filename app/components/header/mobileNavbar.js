@@ -71,11 +71,7 @@ const MobileNavbar = () => {
                     Shop Cars
                   </Link>
                 </ListItem>
-                <ListItem>
-                  <Link onClick={onClose} href={'/sell-or-trade'}>
-                    Sell or Trade
-                  </Link>
-                </ListItem>
+
                 <ListItem>
                   <Link onClick={onClose} href={'/contact'}>
                     Contact Us

@@ -32,12 +32,6 @@ const DesktopNavbar = () => {
         </ListItem>
         <ListItem>
           <Link
-            className={path === '/sell-or-trade' ? 'active' : ''}
-            href={'/sell-or-trade'}
-          >
-            Sell or Trade
-          </Link>
-          <Link
             className={path === '/contact' ? 'active' : ''}
             href={'/contact'}
           >
