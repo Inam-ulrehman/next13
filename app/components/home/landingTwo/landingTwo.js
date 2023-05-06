@@ -2,10 +2,12 @@
 import { Button, Center, Text, useColorMode } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
+import { useRouter } from 'next/navigation'
 import { BiCheck } from 'react-icons/bi'
 const src = 'v1678717865/Inamwebsolutions-nextjs/Fresh_INAMWEBSOLUTIONS_hh0krz'
 
 const LandingTwo = () => {
+  const router = useRouter()
   const { colorMode } = useColorMode()
   return (
     <Wrapper>
@@ -41,6 +43,7 @@ const LandingTwo = () => {
             convenient drop-off
           </Text>
           <Button
+            onClick={() => router.push('/contact')}
             _hover={{ backgroundColor: 'blue.500', color: 'white' }}
             colorScheme='blue'
             variant={'outline'}
@@ -77,6 +80,7 @@ const LandingTwo = () => {
           </Text>
 
           <Button
+            onClick={() => router.push('/login')}
             _hover={{ backgroundColor: 'blue.500', color: 'white' }}
             colorScheme='blue'
             variant={'outline'}

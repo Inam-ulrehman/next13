@@ -4,8 +4,10 @@ import { Box, Center, Heading, Text, useColorMode } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
 const LandingThird = () => {
+  const router = useRouter()
   const { colorMode } = useColorMode()
   return (
     <Wrapper colorMode={colorMode}>
@@ -18,6 +20,7 @@ const LandingThird = () => {
         {bodyType.map((items, index) => {
           return (
             <motion.div
+              onClick={() => router.push(`/cars?type=${items.name}`)}
               key={index}
               className='container-holder'
               initial={{ opacity: 0, scale: 0.5 }}
@@ -100,6 +103,10 @@ const Wrapper = styled.div`
       margin: 0 auto;
       .container-holder {
         padding: 1rem;
+        :hover {
+          color: var(--chakra-colors-red-300);
+          cursor: pointer;
+        }
       }
       .image {
         max-width: 16vw;
