@@ -5,7 +5,7 @@ import { titleCase } from '@/lib/helper'
 import { Skeleton, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Pagination from './pagination'
 import Loading from './loading'
@@ -19,6 +19,7 @@ const initialState = {
   isLoading: false,
 }
 const List = () => {
+  const router = useRouter()
   const [state, setState] = useState(initialState)
   const searchParams = useSearchParams()
   const pathname = usePathname()
@@ -61,7 +62,11 @@ const List = () => {
       <div className='main-container'>
         {state.list.map((item, index) => {
           return (
-            <div key={index} className='container'>
+            <div
+              onClick={() => router.push(`car/${item._id}`)}
+              key={index}
+              className='container'
+            >
               <div className='image'>
                 <Skeleton
                   height='inherit'
@@ -117,6 +122,9 @@ const Wrapper = styled.div`
     gap: 0.7rem;
   }
   .container {
+    :hover {
+      cursor: pointer;
+    }
   }
   .image {
     padding: 1rem;
