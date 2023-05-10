@@ -68,14 +68,10 @@ const Search = () => {
         />
         {search && searchResult.length > 0 && (
           <div className='container'>
-            <ul className='list'>
+            <ul className={colorMode === 'light' ? 'light list' : 'dark list'}>
               {searchResult.map((item, index) => {
                 return (
-                  <li
-                    className={colorMode === 'light' ? 'light' : 'dark'}
-                    key={index}
-                    onClick={() => handleClick(item)}
-                  >
+                  <li key={index} onClick={() => handleClick(item)}>
                     {titleCase(item.make)} {titleCase(item.model)}
                   </li>
                 )
