@@ -24,14 +24,9 @@ const Filter = () => {
   const btnRef = useRef()
   return (
     <Wrapper>
-      <Button
-        ref={btnRef}
-        onClick={onOpen}
-        leftIcon={<BiAbacus size={22} />}
-        variant={'outline'}
-      >
-        Filter
-      </Button>
+      <button className='btn' ref={btnRef} onClick={onOpen}>
+        {<BiAbacus size={22} />} <span>Filter</span>
+      </button>
       <Drawer
         isOpen={isOpen}
         placement='bottom'
@@ -67,11 +62,19 @@ const Filter = () => {
   )
 }
 const Wrapper = styled.div`
-  .chakra-button {
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--chakra-colors-gray-100);
+    width: 40vw;
+    padding: 0.5rem 1rem;
     margin: 1rem;
-    width: 42vw;
-
-    z-index: -1;
+    border-radius: 7px;
+    :hover {
+      background-color: var(--chakra-colors-gray-200);
+    }
+    transition: 0.3s ease-in-out;
   }
 `
 export default Filter

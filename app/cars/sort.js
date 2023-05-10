@@ -41,14 +41,10 @@ const Sort = () => {
   }
   return (
     <Wrapper>
-      <Button
-        ref={btnRef}
-        onClick={onOpen}
-        leftIcon={<TbArrowsSort size={22} />}
-        variant={'outline'}
-      >
+      <button className='btn' ref={btnRef} onClick={onOpen}>
+        <TbArrowsSort size={22} />
         Sort
-      </Button>
+      </button>
 
       <Drawer
         isOpen={isOpen}
@@ -84,10 +80,19 @@ const Sort = () => {
 }
 
 const Wrapper = styled.div`
-  .chakra-button {
+  .btn {
+    display: flex;
+    align-items: center;
     margin: 1rem;
+    justify-content: center;
+    border: 1.5px solid var(--chakra-colors-gray-100);
     width: 40vw;
-    z-index: -1;
+    padding: 0.5rem 1rem;
+    border-radius: 7px;
+    :hover {
+      background-color: var(--chakra-colors-gray-200);
+    }
+    transition: 0.3s ease-in-out;
   }
   .active {
     color: var(--chakra-colors-red-300);
