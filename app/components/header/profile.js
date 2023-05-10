@@ -43,10 +43,16 @@ const Profile = () => {
           </MenuButton>
           <MenuList>
             <MenuGroup>
-              <MenuItem icon={<MdSpaceDashboard size={20} />}>
+              <MenuItem
+                onClick={() => router.push('/dashboard')}
+                icon={<MdSpaceDashboard size={20} />}
+              >
                 Dashboard
               </MenuItem>
-              <MenuItem icon={<RiProfileLine size={20} />}>
+              <MenuItem
+                onClick={() => router.push('/dashboard')}
+                icon={<RiProfileLine size={20} />}
+              >
                 Change Profile
               </MenuItem>
             </MenuGroup>

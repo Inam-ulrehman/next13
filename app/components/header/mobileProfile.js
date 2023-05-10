@@ -41,7 +41,7 @@ const MobileProfile = () => {
     <Wrapper>
       {state.show && (
         <ButtonGroup>
-          <Button as={Link} href={'/dashboard/user'}>
+          <Button as={Link} href={'/dashboard'}>
             Dashboard
           </Button>
           <Button onClick={handleLogOut}>Logout</Button>

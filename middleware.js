@@ -7,6 +7,7 @@ import {
   authDashboard,
   isLoggedIn,
 } from './lib/authentications'
+import { redirectUserAdmin } from './lib/authentications/redirectUserAdmin'
 
 export function middleware(request, response, event) {
   // this logic is many routes
@@ -44,6 +45,11 @@ export function middleware(request, response, event) {
   if (request.nextUrl.pathname.startsWith('/register')) {
     // direct response back if fail for actions.
     return isLoggedIn(request)
+  }
+  if (request.nextUrl.pathname.startsWith('/dashboard')) {
+    // direct response back if fail for actions.
+
+    return redirectUserAdmin(request)
   }
 }
 
