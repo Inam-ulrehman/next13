@@ -1,6 +1,12 @@
 import { customFetch } from '@/lib/axios/customFetch'
 import { titleCase } from '@/lib/helper'
-import { Input, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react'
+import {
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Stack,
+  useColorMode,
+} from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -15,6 +21,7 @@ const initialState = {
 
 const Search = () => {
   const router = useRouter()
+  const { colorMode } = useColorMode()
   const [state, setState] = useState(initialState)
   const [searchResult, setSearchResult] = useState([])
   const { search, list } = state
@@ -64,7 +71,11 @@ const Search = () => {
             <ul className='list'>
               {searchResult.map((item, index) => {
                 return (
-                  <li key={index} onClick={() => handleClick(item)}>
+                  <li
+                    className={colorMode === 'light' ? 'light' : 'dark'}
+                    key={index}
+                    onClick={() => handleClick(item)}
+                  >
                     {titleCase(item.make)} {titleCase(item.model)}
                   </li>
                 )
@@ -92,7 +103,6 @@ const Wrapper = styled.div`
     width: inherit;
   }
   .list {
-    background-color: white;
     list-style: none;
     height: 200px;
     overflow-y: scroll;
