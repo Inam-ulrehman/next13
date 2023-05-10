@@ -87,6 +87,7 @@ const Wrapper = styled.div`
   .chakra-button {
     margin: 1rem;
     width: 40vw;
+    z-index: -1;
   }
   .active {
     color: var(--chakra-colors-red-300);

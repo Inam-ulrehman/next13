@@ -70,6 +70,8 @@ const Wrapper = styled.div`
   .chakra-button {
     margin: 1rem;
     width: 42vw;
+
+    z-index: -1;
   }
 `
 export default Filter
