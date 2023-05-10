@@ -2,6 +2,7 @@ import { customFetch } from '@/lib/axios/customFetch'
 import { titleCase } from '@/lib/helper'
 import { Input, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react'
 import styled from '@emotion/styled'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 import { GoSearch } from 'react-icons/go'
@@ -13,6 +14,7 @@ const initialState = {
 }
 
 const Search = () => {
+  const router = useRouter()
   const [state, setState] = useState(initialState)
   const [searchResult, setSearchResult] = useState([])
   const { search, list } = state
@@ -21,9 +23,12 @@ const Search = () => {
     const name = e.target.name
     const value = e.target.value
     setState({ ...state, [name]: value })
-    if (!e.target.value) {
-      setSearchResult([])
-    }
+  }
+
+  const handleClick = (item) => {
+    const search = `cars?make=${item.make}&model=${item.model}`
+    router.push(search)
+    setState({ ...state, search: '' })
   }
   const fetchData = async () => {
     try {
@@ -59,8 +64,8 @@ const Search = () => {
             <ul className='list'>
               {searchResult.map((item, index) => {
                 return (
-                  <li key={index}>
-                    {titleCase(item.model)} {titleCase(item.make)}
+                  <li key={index} onClick={() => handleClick(item)}>
+                    {titleCase(item.make)} {titleCase(item.model)}
                   </li>
                 )
               })}
