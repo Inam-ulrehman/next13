@@ -7,7 +7,7 @@ export async function GET(request, res) {
   await dbConnect()
 
   try {
-    const result = await Car.find()
+    const result = await Car.find().limit(2)
 
     return new Response(
       JSON.stringify(
