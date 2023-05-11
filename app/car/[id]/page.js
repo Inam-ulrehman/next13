@@ -1,23 +1,32 @@
-import { customFetch } from '@/lib/axios/customFetch'
-
-// Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
-  // const posts = await customFetch('/cars/static')
-  // const result = posts.data.result
   const posts = await fetch(
     `${process.env.NEXT_PUBLIC_WEBSITE}/api/v1/cars/static`
   ).then((res) => res.json())
 
   return posts.result.map((item) => ({ id: item._id }))
-  // return posts.map((post) => ({
-  //   slug: post.slug,
-  // }))
+}
+const fetchData = async (id) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_WEBSITE}/api/v1/cars/${id}`,
+    { cache: 'no-cache' }
+  ).then((res) => res.json())
+  return response
 }
 
-// Multiple versions of this page will be statically generated
-// using the `params` returned by `generateStaticParams`
-export default function Page({ params }) {
+export default async function Page({ params }) {
   const { id } = params
-  console.log(id)
-  // ...
+  const response = await fetchData(id)
+
+  if (!response.success) {
+    return <div>{response.msg}</div>
+  }
+
+  return (
+    <div>
+      <p>Id: {response.result._id}</p>
+      <p>make: {response.result.make}</p>
+      <p>model: {response.result.model}</p>
+      <p>price: {response.result.price}</p>
+    </div>
+  )
 }
