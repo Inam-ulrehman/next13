@@ -1,32 +1,28 @@
+import dbConnect from '@/lib/dbConnect'
+import Car from '@/models/Car'
+import Components from './components'
+
 export async function generateStaticParams() {
-  const posts = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSITE}/api/v1/cars/static`
-  ).then((res) => res.json())
-
-  return posts.result.map((item) => ({ id: item._id }))
+  await dbConnect()
+  const result = await Car.find()
+  return result.map((item) => ({ id: item._id.toString() }))
 }
-const fetchData = async (id) => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSITE}/api/v1/cars/${id}`,
-    { cache: 'no-cache' }
-  ).then((res) => res.json())
-  return response
-}
-
 export default async function Page({ params }) {
+  await dbConnect()
   const { id } = params
-  const response = await fetchData(id)
+  const response = async () => {
+    try {
+      const result = await Car.findById({ _id: id })
+      return result
+    } catch (err) {
+      return { success: false }
+    }
+  }
+  const result = await response()
 
-  if (!response.success) {
-    return <div>{response.msg}</div>
+  if (result.success === false) {
+    return <div>Sorry product is not in the list</div>
   }
 
-  return (
-    <div>
-      <p>Id: {response.result._id}</p>
-      <p>make: {response.result.make}</p>
-      <p>model: {response.result.model}</p>
-      <p>price: {response.result.price}</p>
-    </div>
-  )
+  return <Components result={result}></Components>
 }
