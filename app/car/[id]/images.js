@@ -32,8 +32,8 @@ const Images = ({ data }) => {
             >
               <CldImage
                 src={item.public_id}
-                width={120}
-                height={120}
+                width={160}
+                height={160}
                 alt='car'
               ></CldImage>
             </div>
@@ -45,13 +45,11 @@ const Images = ({ data }) => {
 }
 
 const Wrapper = styled.div`
-  display: grid;
-  gap: 1rem;
-
   .main-image {
     padding: 0 1rem;
     border: 2px solid var(--chakra-colors-gray-100);
     border-radius: 10px;
+    max-height: 400px;
     img {
       width: 100%;
       height: 100%;
@@ -59,6 +57,8 @@ const Wrapper = styled.div`
   }
 
   .images-container {
+    height: 120px;
+    align-items: center;
     :hover {
       cursor: pointer;
     }
@@ -66,7 +66,6 @@ const Wrapper = styled.div`
     gap: 1rem;
     overflow-x: scroll;
     .container {
-      margin-bottom: 1rem;
       padding: 0 10px;
       border: 2px solid var(--chakra-colors-gray-100);
       flex-shrink: 0;
@@ -92,6 +91,8 @@ const Wrapper = styled.div`
   @media (max-width: 920px) {
   }
   @media (min-width: 920px) {
+    .main-image {
+    }
     .main-image,
     .images-container {
       width: 40vw;
