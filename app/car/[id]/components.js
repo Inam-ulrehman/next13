@@ -19,6 +19,9 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding-top: 1rem;
 
+  @media (max-width: 920px) {
+    gap: 1rem;
+  }
   @media (min-width: 920px) {
     grid-template-columns: 1fr 1fr;
   }
