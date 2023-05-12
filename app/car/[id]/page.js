@@ -13,6 +13,7 @@ export default async function Page({ params }) {
   const response = async () => {
     try {
       const result = await Car.findById({ _id: id })
+      result._id = result._id.toString()
       return result
     } catch (err) {
       return { success: false }

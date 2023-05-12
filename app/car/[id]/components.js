@@ -1,16 +1,20 @@
-import React from 'react'
+// 'use client'
+import Images from './images'
+import Details from './details'
+// import styled from '@emotion/styled'
 
 const Components = ({ result }) => {
   return (
     <div>
-      <div>
-        <p>Id: {result._id.toString()}</p>
-        <p>make: {result.make}</p>
-        <p>model: {result.model}</p>
-        <p>price: {result.price}</p>
-      </div>
+      <Images result={result}></Images>
+      <Details result={result}></Details>
     </div>
   )
 }
 
+// const Wrapper = styled.div`
+//   @media (min-width: 920px) {
+//     background-color: pink;
+//   }
+// `
 export default Components
