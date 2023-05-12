@@ -4,7 +4,7 @@ import { Button, Heading, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
 import SearchBox from './searchBox'
-const src = 'v1678717865/Inamwebsolutions-nextjs/Fresh_INAMWEBSOLUTIONS_hh0krz'
+const src = 'v1683920808/carsell/ffh5kilm678mwwlbm70v'
 const Landing = () => {
   return (
     <Wrapper>

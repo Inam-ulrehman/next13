@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { CldImage } from 'next-cloudinary'
 import { useRouter } from 'next/navigation'
 import { BiCheck } from 'react-icons/bi'
-const src = 'v1678717865/Inamwebsolutions-nextjs/Fresh_INAMWEBSOLUTIONS_hh0krz'
+const src = 'v1683921257/carsell/kun8ume1kqn7z31b2qvf'
 
 const LandingTwo = () => {
   const router = useRouter()
