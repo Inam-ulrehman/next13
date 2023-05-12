@@ -11,7 +11,7 @@ const Overview = ({ data }) => {
       <div className='box-1'>
         <div className='box'>
           <AiOutlineDashboard size={34} />
-          <span>{data.km.toLocaleString()} km</span>
+          <span>{data.km} km</span>
         </div>
         <div className='box'>
           <BsFillFuelPumpDieselFill size={34} />
