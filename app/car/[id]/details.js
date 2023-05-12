@@ -3,6 +3,8 @@ import { Box, Button, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import React from 'react'
 
+import TabsHolder from './details-tab'
+
 const Details = ({ data }) => {
   const { km, make, model, price, type, year, color } = data
   return (
@@ -35,7 +37,9 @@ const Details = ({ data }) => {
       <Button className='btn' colorScheme='red'>
         Start Purchase
       </Button>
-      <div className='body'></div>
+      <div className='body'>
+        <TabsHolder data={data} />
+      </div>
     </Wrapper>
   )
 }
