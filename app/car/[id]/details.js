@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import React from 'react'
 
 import TabsHolder from './details-tab'
+import { Link } from '@chakra-ui/next-js'
 
 const Details = ({ data }) => {
   const { km, make, model, price, type, year, color } = data
@@ -34,7 +35,7 @@ const Details = ({ data }) => {
           Kitchener,Ontario
         </Box>
       </Text>
-      <Button className='btn' colorScheme='red'>
+      <Button as={Link} href={'contact'} className='btn' colorScheme='red'>
         Start Purchase
       </Button>
       <div className='body'>
