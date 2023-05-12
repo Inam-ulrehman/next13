@@ -25,5 +25,5 @@ export default async function Page({ params }) {
     return <div>Sorry product is not in the list</div>
   }
 
-  return <Components result={result}></Components>
+  return <Components result={JSON.stringify(result)}></Components>
 }

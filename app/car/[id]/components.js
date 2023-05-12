@@ -1,20 +1,26 @@
-// 'use client'
+'use client'
 import Images from './images'
 import Details from './details'
-// import styled from '@emotion/styled'
+import styled from '@emotion/styled'
 
 const Components = ({ result }) => {
+  const data = JSON.parse(result)
   return (
-    <div>
-      <Images result={result}></Images>
-      <Details result={result}></Details>
-    </div>
+    <Wrapper>
+      <Images data={data}></Images>
+      <Details data={data}></Details>
+    </Wrapper>
   )
 }
 
-// const Wrapper = styled.div`
-//   @media (min-width: 920px) {
-//     background-color: pink;
-//   }
-// `
+const Wrapper = styled.div`
+  display: grid;
+  max-width: 90vw;
+  margin: 0 auto;
+  padding-top: 1rem;
+
+  @media (min-width: 920px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`
 export default Components
