@@ -32,8 +32,8 @@ const Images = ({ data }) => {
             >
               <CldImage
                 src={item.public_id}
-                width={160}
-                height={160}
+                width={180}
+                height={180}
                 alt='car'
               ></CldImage>
             </div>
