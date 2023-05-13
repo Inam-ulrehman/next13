@@ -49,7 +49,7 @@ const Wrapper = styled.div`
     overflow: hidden;
     border: 2px solid var(--chakra-colors-gray-100);
     border-radius: 10px;
-    max-height: 400px;
+    max-height: 425px;
     img {
       width: 100%;
       height: 100%;
