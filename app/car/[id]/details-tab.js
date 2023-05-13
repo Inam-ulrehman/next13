@@ -40,5 +40,10 @@ const Wrapper = styled.div`
     font-size: large;
     font-weight: 500;
   }
+  @media (max-width: 768px) {
+    .chakra-tabs__tab {
+      font-size: small;
+    }
+  }
 `
 export default TabsHolder

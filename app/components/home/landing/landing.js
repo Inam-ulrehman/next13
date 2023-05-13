@@ -59,7 +59,7 @@ const Wrapper = styled.div`
         padding: 1rem;
       }
       .image {
-        width: 50%;
+        width: 80%;
         margin: 0 auto;
       }
     }
@@ -75,7 +75,7 @@ const Wrapper = styled.div`
         padding: 3rem;
       }
       .image {
-        height: 40vh;
+        height: 60vh;
         width: 100%;
         img {
           width: 100%;
