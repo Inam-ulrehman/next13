@@ -119,8 +119,8 @@ function CloudinaryWidget() {
               <motion.div key={index} className='container-holder'>
                 <div className='image'>
                   <CldImage
-                    width={1200}
-                    height={1200}
+                    width={200}
+                    height={200}
                     src={item.public_id}
                     alt='Image'
                   />
