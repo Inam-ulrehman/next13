@@ -17,7 +17,7 @@ const Images = ({ data }) => {
         <CldImage
           src={uploadImages[index].public_id}
           width={940}
-          height={780}
+          height={788}
           alt='car'
           priority
         />
@@ -46,7 +46,7 @@ const Images = ({ data }) => {
 
 const Wrapper = styled.div`
   .main-image {
-    padding: 0 1rem;
+    overflow: hidden;
     border: 2px solid var(--chakra-colors-gray-100);
     border-radius: 10px;
     max-height: 400px;
@@ -66,7 +66,7 @@ const Wrapper = styled.div`
     gap: 1rem;
     overflow-x: scroll;
     .container {
-      padding: 0 10px;
+      overflow: hidden;
       border: 2px solid var(--chakra-colors-gray-100);
       flex-shrink: 0;
       border-radius: 10px;

@@ -127,7 +127,7 @@ const Wrapper = styled.div`
     }
   }
   .image {
-    padding: 1rem;
+    overflow: hidden;
     border: 2px solid var(--chakra-colors-gray-100);
     max-width: 95vw;
     margin: 0 auto;
