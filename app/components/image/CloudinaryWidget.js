@@ -32,7 +32,6 @@ function CloudinaryWidget() {
     formData.append('file', files[0])
     formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_PRESET)
     formData.append('folder', 'carsell/cars')
-    // formData.append('transformation', 'c_pad,h_720,w_720,e_bgremoval')
     setState({ ...state, isLoading: true })
 
     const response = await fetch(
@@ -88,14 +87,12 @@ function CloudinaryWidget() {
   useEffect(() => {
     const storageImages = getItemFromLocalStorage('uploadImage')
     if (!storageImages || null) {
+      setState({ ...state, uploadImages: [] })
       return
     }
     setState({ ...state, uploadImages: storageImages })
-  }, [])
-  useEffect(() => {
-    setState({ ...state, uploadImages: [] })
-    removeItemFromLocalStorage('uploadImage')
   }, [refreshData])
+
   return (
     <Wrapper>
       <Button

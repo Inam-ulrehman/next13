@@ -1,5 +1,6 @@
 import { customFetch } from '@/lib/axios/customFetch'
 import { makes } from '@/lib/data/carMakes'
+import { removeItemFromLocalStorage } from '@/lib/localStorage/localStorage'
 import { createStandaloneToast } from '@chakra-ui/react'
 
 const { toast } = createStandaloneToast()
@@ -160,7 +161,6 @@ const carsSlice = createSlice({
       state.model = ''
       state.selectModel = []
       state.type = 'sedan'
-      state.color = 'white'
       state.year = '2010-05'
       state.price = ''
       state.km = ''
@@ -209,6 +209,7 @@ const carsSlice = createSlice({
       .addCase(createCarsThunk.fulfilled, (state, { payload }) => {
         state.refreshData = !state.refreshData
         state.isLoading = false
+        removeItemFromLocalStorage('uploadImage')
         toast({
           description: payload.msg,
           status: 'success',
