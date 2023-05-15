@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react'
 import Pagination from './pagination'
 import Loading from './loading'
 import EmptyResult from './emptyResult'
+import { useDispatch } from 'react-redux'
+import { getStateValues } from '@/features/cars/carsSlice'
 
 const initialState = {
   list: [],
@@ -19,6 +21,7 @@ const initialState = {
   isLoading: false,
 }
 const List = () => {
+  const dispatch = useDispatch()
   const router = useRouter()
   const [state, setState] = useState(initialState)
   const searchParams = useSearchParams()
@@ -30,6 +33,7 @@ const List = () => {
     try {
       setState({ ...state, isLoading: true })
       const response = await customFetch(`/cars/search?${search}`)
+      dispatch(getStateValues({ name: 'nbHits', value: response.data.nbHits }))
 
       setState({
         ...state,

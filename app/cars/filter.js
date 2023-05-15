@@ -18,8 +18,10 @@ import BodyType from './filterBodyType'
 import Price from './filterPrice'
 import Year from './filterYear'
 import Colors from './filterColors'
+import { useSelector } from 'react-redux'
 
 const Filter = () => {
+  const cars = useSelector((state) => state.cars)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
   return (
@@ -52,7 +54,7 @@ const Filter = () => {
                 Clear all Filters
               </Link>
               <Button onClick={onClose} colorScheme='teal' size={'lg'}>
-                Show results
+                Show results {cars.nbHits}
               </Button>
             </DrawerFooter>
           </DrawerContent>
