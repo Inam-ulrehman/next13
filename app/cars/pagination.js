@@ -56,7 +56,7 @@ const Pagination = ({ nbHits }) => {
     }
     router.push(`/cars?page=${prevPage}`)
   }
-  if (nbHits <= 9) {
+  if (nbHits <= 23) {
     return
   }
 
