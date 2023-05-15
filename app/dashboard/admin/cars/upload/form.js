@@ -52,7 +52,13 @@ const Form = () => {
           <Image />
         </FormControl>
         <Center>
-          <Button colorScheme='teal' className='button' type='submit'>
+          <Button
+            loadingText='submitting'
+            isLoading={cars.isLoading}
+            colorScheme='teal'
+            className='button'
+            type='submit'
+          >
             Submit
           </Button>
         </Center>
