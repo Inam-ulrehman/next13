@@ -19,7 +19,7 @@ export async function GET(request, res) {
   const yearEnd = searchParams.get('yearEnd')
   const priceLow = searchParams.get('priceLow')
   const priceHigh = searchParams.get('priceHigh')
-  const sortField = searchParams.get('sortfield')
+  let sortField = searchParams.get('sortfield')
 
   let query = []
   let sort = {}
@@ -63,7 +63,9 @@ export async function GET(request, res) {
   if (priceLow && priceHigh) {
     search = { ...search, price: { $gte: priceLow, $lte: priceHigh } }
   }
-
+  if (!sortField) {
+    sortField = '-createdAt'
+  }
   const page = Number(searchParams.get('page')) || 1
   const limit = Number(searchParams.get('limit')) || 24
   const skip = (page - 1) * limit
